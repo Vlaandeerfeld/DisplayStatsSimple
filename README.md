@@ -1,0 +1,1 @@
+Used to display stats from uploaded csvs created using simplify2 repository. Select team_master_simplifed.csv and click upload. Stats will be displayed on mainscreen. Uses FHM10 csv files. Work in progress.
