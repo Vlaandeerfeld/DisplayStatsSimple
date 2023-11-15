@@ -43,6 +43,20 @@
 		margin-left: 2.5%;
 		float: left;
 	}
+	#tbody3{
+		position:relative;
+		border: 1px solid;
+		margin-top: 2.5%;
+		margin-left: 2.5%;
+		float: left;
+	}	
+	#tbody4{
+		position:relative;
+		border: 1px solid;
+		margin-top: 2.5%;
+		margin-left: 2.5%;
+		float: left;
+	}	
 	#table1{
 		position: relative;
 		width: 100%;
@@ -65,6 +79,10 @@
 		<tbody id = "tbody1">
 		</tbody>
 		<tbody id = "tbody2">
+		</tbody>
+		<tbody id = "tbody3">
+		</tbody>
+		<tbody id = "tbody4">
 		</tbody>
 	</table>	
 	<button type="button" id ="button"><i class="glyphicon glyphicon-cloud"></i></button>
@@ -235,11 +253,13 @@ function retrieve(variantToRetrieve){
 	return list10;
 }
 
-console.log(localStorage['variant1']);
+console.log(localStorage['variant3']);
 console.log(localStorage['counter']);
 
 teamTables('variant1');
 teamTables('variant2');
+teamTables('variant3');
+teamTables('variant4');
 function teamTables(variantToDisplay){
 	outputHTML = '';
 	array10 = retrieve(variantToDisplay);
