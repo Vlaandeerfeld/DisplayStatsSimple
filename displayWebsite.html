@@ -1,25 +1,55 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <title>Page Title</title>
+<style>
+	#thatone{
+		position:absolute;
+		left: 0px;
+		top: 0px;
+	}
+	#turnt {
+		position: absolute;
+		bottom: 0px;
+	}
+	#CSVfile {
+		position: relative;
+		left: 0px;
+		top: 0px;
+		}
+	#button{
+		position: relative;
+		bottom: 0px;
+		width: 100px;
+		height: 100px;
+	}	
+	#tbody{
+		position:relative;
+		top: 0px;
+	}
+	#whatever{
+		position:absolute;
+	}
+</style>
 </head>
 <body>
 
-<form method="post" enctype="multipart/form-data">
-  <label for="file">File</label>
-  <input id="CSVfile" name="file" type="file" accept=".csv" />
-  <button type="button" id ="button">Upload</button>
-</form>
-
 <p id="demo"></p>
 
-<p id="turnt"></p>
+<div id = "thatone">
+	<form method="post" enctype="multipart/form-data">
+		<input id="CSVfile" name="file" type="file" accept=".csv" />
+	</form>
+	<table id = "whatever">
+		<tbody id = "tbody">
+		</tbody>	
+	</table>
+</div>
 
-<table>
-	<tbody id = "tbody">
-
-	</tbody>	
-</table>
+<div id="turnt"> 
+	<button type="button" id ="button"><i class="glyphicon glyphicon-cloud"></i></button>
+</div>
 
 <script>
 /*
@@ -192,16 +222,26 @@ outputHTML = '';
 array10 = retrieve('variant2');
 console.log(array10)
 
-outputHTML += '<tr>'
-outputHTML += '<th>PlayerId</th>'
-outputHTML += '<th>First Name</th>'
-outputHTML += '<th>Last Name</th>'
-outputHTML += '</tr>'
+outputHTML += '<tr>';
+outputHTML += '<th>' + array10[21][21] + '</th>' + "<th>" + array10[21][22] + '</th>';
+outputHTML += '<tr>';
+outputHTML += '<th>Wins</th>' + '<th>Losses</th>' + '<th>OTL</th>';
+outputHTML += '</tr>';
 outputHTML += "<tr>";
-outputHTML += "<td>" + array10[0][0] + "</td>";
-outputHTML += "<td>" + array10[0][1] + "</td>";
-outputHTML += "<td>" + array10[0][2] + "</td>";
+outputHTML += "<td>" + array10[21][24] + "</td>" +"<td>" + array10[21][25] + "</td>" + "<td>" + array10[21][27] + "</td>";
 outputHTML += "</tr>";
+outputHTML += '<tr>';
+outputHTML += '<th>GP</th>' + '<th>Points</th>' + '<th>PCT</th>';
+outputHTML += '</tr>';
+outputHTML += "<tr>";
+outputHTML += "<td>" + array10[21][32] + "</td>" +"<td>" + array10[21][30] + "</td>" + "<td>" + array10[21][31] + "</td>";
+outputHTML += "</tr>";
+outputHTML += '<th>ESG</th>' + '<th>PPG</th>' + '<th>SHG</th>';
+outputHTML += '</tr>';
+outputHTML += "<tr>";
+outputHTML += "<td>" + (parseInt(array10[21][33]) - parseInt(array10[21][45]) - parseInt(array10[21][49])) + "</td>" +"<td>" + array10[21][45] + "</td>" + "<td>" + array10[21][49] + "</td>";
+outputHTML += "</tr>";
+
 
 document.getElementById("tbody").innerHTML = outputHTML;
 
