@@ -6,30 +6,50 @@
 <style>
 	#thatone{
 		position:absolute;
-		left: 0px;
+		width: 100%;
+		height: 200%;
 		top: 0px;
+		left: 0px;
+		float: top;
+
 	}
 	#turnt {
 		position: absolute;
+		float: bottom;
 		bottom: 0px;
 	}
 	#CSVfile {
 		position: relative;
-		left: 0px;
-		top: 0px;
+		float: top;
 		}
 	#button{
-		position: relative;
-		bottom: 0px;
+		position: sticky;
+		bottom: 0;
+		float: bottom;
 		width: 100px;
 		height: 100px;
 	}	
-	#tbody{
+	#tbody1{
 		position:relative;
-		top: 0px;
+		border: 1px solid;
+		margin-top: 2.5%;
+		margin-left: 2.5%;
+		float: left;
 	}
-	#whatever{
-		position:absolute;
+	#tbody2{
+		position:relative;
+		border: 1px solid;
+		margin-top: 2.5%;
+		margin-left: 2.5%;
+		float: left;
+	}
+	#table1{
+		position: relative;
+		width: 100%;
+		height: 100%;
+	}
+	th, td{
+		border: 1px solid;
 	}
 </style>
 </head>
@@ -41,15 +61,15 @@
 	<form method="post" enctype="multipart/form-data">
 		<input id="CSVfile" name="file" type="file" accept=".csv" />
 	</form>
-	<table id = "whatever">
-		<tbody id = "tbody">
-		</tbody>	
-	</table>
-</div>
-
-<div id="turnt"> 
+	<table id = "table1">
+		<tbody id = "tbody1">
+		</tbody>
+		<tbody id = "tbody2">
+		</tbody>
+	</table>	
 	<button type="button" id ="button"><i class="glyphicon glyphicon-cloud"></i></button>
 </div>
+
 
 <script>
 /*
@@ -186,8 +206,8 @@ function retrieve(variantToRetrieve){
 		}
 	}
 	else if ((that.length - 82) % 176 == 0){
+		y = (that.length - 82) / 176;
 		for(y; y >= 0; y--){		
-			y = (that.length - 82) / 176;
 			console.log((that.length - 82) % 176 == 0);
 			if ((y * 176) + 82 <= that.length && y != 0 && y != 1){
 				for (let u = 0; u < 176; u++){
@@ -215,36 +235,44 @@ function retrieve(variantToRetrieve){
 	return list10;
 }
 
-console.log(localStorage['variant2']);
+console.log(localStorage['variant1']);
 console.log(localStorage['counter']);
 
-outputHTML = '';
-array10 = retrieve('variant2');
-console.log(array10)
+teamTables('variant1');
+teamTables('variant2');
+function teamTables(variantToDisplay){
+	outputHTML = '';
+	array10 = retrieve(variantToDisplay);
+	console.log(array10)
 
-outputHTML += '<tr>';
-outputHTML += '<th>' + array10[21][21] + '</th>' + "<th>" + array10[21][22] + '</th>';
-outputHTML += '<tr>';
-outputHTML += '<th>Wins</th>' + '<th>Losses</th>' + '<th>OTL</th>';
-outputHTML += '</tr>';
-outputHTML += "<tr>";
-outputHTML += "<td>" + array10[21][24] + "</td>" +"<td>" + array10[21][25] + "</td>" + "<td>" + array10[21][27] + "</td>";
-outputHTML += "</tr>";
-outputHTML += '<tr>';
-outputHTML += '<th>GP</th>' + '<th>Points</th>' + '<th>PCT</th>';
-outputHTML += '</tr>';
-outputHTML += "<tr>";
-outputHTML += "<td>" + array10[21][32] + "</td>" +"<td>" + array10[21][30] + "</td>" + "<td>" + array10[21][31] + "</td>";
-outputHTML += "</tr>";
-outputHTML += '<th>ESG</th>' + '<th>PPG</th>' + '<th>SHG</th>';
-outputHTML += '</tr>';
-outputHTML += "<tr>";
-outputHTML += "<td>" + (parseInt(array10[21][33]) - parseInt(array10[21][45]) - parseInt(array10[21][49])) + "</td>" +"<td>" + array10[21][45] + "</td>" + "<td>" + array10[21][49] + "</td>";
-outputHTML += "</tr>";
+	outputHTML += '<tr>';
+	outputHTML += '<th>' + array10[array10.length - 1][21] + '</th>' + "<th>" + array10[array10.length - 1][22] + '</th>';
+	outputHTML += '<tr>';
+	outputHTML += '<th>Wins</th>' + '<th>Losses</th>' + '<th>OTL</th>';
+	outputHTML += '</tr>';
+	outputHTML += "<tr>";
+	outputHTML += "<td>" + array10[array10.length - 1][24] + "</td>" +"<td>" + array10[array10.length - 1][25] + "</td>" + "<td>" + array10[array10.length - 1][27] + "</td>";
+	outputHTML += "</tr>";
+	outputHTML += '<tr>';
+	outputHTML += '<th>GP</th>' + '<th>Points</th>' + '<th>PCT</th>';
+	outputHTML += '</tr>';
+	outputHTML += "<tr>";
+	outputHTML += "<td>" + array10[array10.length - 1][32] + "</td>" +"<td>" + array10[array10.length - 1][30] + "</td>" + "<td>" + array10[array10.length - 1][31] + "</td>";
+	outputHTML += "</tr>";
+	outputHTML += '<th>ESG</th>' + '<th>PPG</th>' + '<th>SHG</th>';
+	outputHTML += '</tr>';
+	outputHTML += "<tr>";
+	outputHTML += "<td>" + (parseInt(array10[array10.length - 1][33]) - parseInt(array10[array10.length - 1][45]) - parseInt(array10[array10.length - 1][49])) + "</td>" +"<td>" + array10[array10.length - 1][45] + "</td>" + "<td>" + array10[array10.length - 1][49] + "</td>";
+	outputHTML += "</tr>";
+	outputHTML += "</tr>";
+	outputHTML += '<th>ESG/Game</th>' + '<th>PPG/Game</th>' + '<th>SHG/Game</th>';
+	outputHTML += '</tr>';
+	outputHTML += "<tr>";
+	outputHTML += "<td>" + ((parseInt(array10[array10.length - 1][33]) - parseInt(array10[array10.length - 1][45]) - parseInt(array10[array10.length - 1][49])) / parseInt(array10[array10.length - 1][24])).toFixed(2) + "</td>" +"<td>" + (parseInt(array10[array10.length - 1][45]) / parseInt(array10[array10.length - 1][24])).toFixed(2) + "</td>" + "<td>" + (parseInt(array10[array10.length - 1][49]) / array10[array10.length - 1][24]).toFixed(2) + "</td>";
+	outputHTML += "</tr>";
 
-
-document.getElementById("tbody").innerHTML = outputHTML;
-
+	document.getElementById("tbody" + variantToDisplay.slice(-1)).innerHTML = (outputHTML);
+}
 
 </script>
 
