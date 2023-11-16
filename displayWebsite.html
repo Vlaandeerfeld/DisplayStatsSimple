@@ -7,85 +7,69 @@
 	#thatone{
 		position:absolute;
 		width: 100%;
-		height: 200%;
+		height: 100%;
 		top: 0px;
 		left: 0px;
 		float: top;
-
+		background-color: black;
 	}
-	#turnt {
-		position: absolute;
-		float: bottom;
-		bottom: 0px;
-	}
-	#CSVfile {
-		position: relative;
-		float: top;
-		}
 	#button{
 		position: sticky;
-		bottom: 0;
+		bottom: 0px;
 		float: bottom;
-		width: 100px;
+		float: left;
+		width: 66%;
 		height: 100px;
-	}	
-	#tbody1{
+		
+	}
+	#button2, #button3{
+		position: sticky;
+		bottom: 0px;
+		float: left;
+		width: 16.7%;
+		height: 100px;
+	}
+	tbody{
 		position:relative;
-		border: 1px solid;
 		margin-top: 2.5%;
 		margin-left: 2.5%;
 		float: left;
 	}
-	#tbody2{
-		position:relative;
-		border: 1px solid;
-		margin-top: 2.5%;
-		margin-left: 2.5%;
-		float: left;
-	}
-	#tbody3{
-		position:relative;
-		border: 1px solid;
-		margin-top: 2.5%;
-		margin-left: 2.5%;
-		float: left;
-	}	
-	#tbody4{
-		position:relative;
-		border: 1px solid;
-		margin-top: 2.5%;
-		margin-left: 2.5%;
-		float: left;
-	}	
 	#table1{
 		position: relative;
 		width: 100%;
 		height: 100%;
+		background-color: black;
 	}
-	th, td{
+	td{
 		border: 1px solid;
+		text-align: center;
+		background-color: grey;
+	}
+	th{
+		background-color: darkgrey;
+		text-align: center;
+	}
+	#teamPage{
+		display: inline-block;	
+		height: 18px;
+		width: 100%;
+	}
+	.html{
+		background-color: black;
 	}
 </style>
 </head>
 <body>
-
-<p id="demo"></p>
-
 <div id = "thatone">
-	<form method="post" enctype="multipart/form-data">
+	<form id ='CSV' method="post" enctype="multipart/form-data">
 		<input id="CSVfile" name="file" type="file" accept=".csv" />
-	</form>
+	</form>	
 	<table id = "table1">
-		<tbody id = "tbody1">
-		</tbody>
-		<tbody id = "tbody2">
-		</tbody>
-		<tbody id = "tbody3">
-		</tbody>
-		<tbody id = "tbody4">
-		</tbody>
 	</table>	
+	<button type="button" id ="button2"><i class="glyphicon glyphicon-cloud"></i></button>
 	<button type="button" id ="button"><i class="glyphicon glyphicon-cloud"></i></button>
+	<button type="button" id ="button3"><i class="glyphicon glyphicon-cloud"></i></button>
 </div>
 
 
@@ -185,6 +169,7 @@ async function upload(){
 			}
 		}
 		console.log(headers);
+		teamTables('variant' + localStorage['counter'] + 1);
 	}
 }
 
@@ -256,17 +241,21 @@ function retrieve(variantToRetrieve){
 console.log(localStorage['variant3']);
 console.log(localStorage['counter']);
 
-teamTables('variant1');
-teamTables('variant2');
-teamTables('variant3');
-teamTables('variant4');
+let x = localStorage['counter'];
+
+while(x > 0){
+	teamTables('variant' + x);
+	x--;
+}
+
 function teamTables(variantToDisplay){
 	outputHTML = '';
 	array10 = retrieve(variantToDisplay);
 	console.log(array10)
 
+	outputHTML += '<tbody>';
 	outputHTML += '<tr>';
-	outputHTML += '<th>' + array10[array10.length - 1][21] + '</th>' + "<th>" + array10[array10.length - 1][22] + '</th>';
+	outputHTML += '<th>' + array10[array10.length - 1][21] + '</th>' + "<th>" + array10[array10.length - 1][22] + '</th>' + "<th><button type = 'button' id = 'teamPage'></></th>";
 	outputHTML += '<tr>';
 	outputHTML += '<th>Wins</th>' + '<th>Losses</th>' + '<th>OTL</th>';
 	outputHTML += '</tr>';
@@ -290,8 +279,9 @@ function teamTables(variantToDisplay){
 	outputHTML += "<tr>";
 	outputHTML += "<td>" + ((parseInt(array10[array10.length - 1][33]) - parseInt(array10[array10.length - 1][45]) - parseInt(array10[array10.length - 1][49])) / parseInt(array10[array10.length - 1][24])).toFixed(2) + "</td>" +"<td>" + (parseInt(array10[array10.length - 1][45]) / parseInt(array10[array10.length - 1][24])).toFixed(2) + "</td>" + "<td>" + (parseInt(array10[array10.length - 1][49]) / array10[array10.length - 1][24]).toFixed(2) + "</td>";
 	outputHTML += "</tr>";
+	outputHTML += '</tbody>';
 
-	document.getElementById("tbody" + variantToDisplay.slice(-1)).innerHTML = (outputHTML);
+	document.getElementById("table1").innerHTML += (outputHTML);
 }
 
 </script>
