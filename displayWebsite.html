@@ -118,7 +118,7 @@ Team Stats
 26 = Ties				33 = G		40 = TkA		47 = SH Ch			54 = Sellouts Home
 27 = OTL				34 = GA		41 = GvA		48 = PP GA			55 = Sellouts Away
 28 = Shootout Wins		35 = S		42 = InD		49 = SHG			56 = Capacity Use %
-29 = Shootout Losses	36 = SA		43 = PIM/G	50 = ATT Total Home
+29 = Shootout Losses	36 = SA		43 = PIM/G	50 = ATT Total Home		
 30 = Points			37 = FO%	44 = PP Ch	51 = ATT Total Away
 */
 
@@ -252,11 +252,13 @@ while(x > 0){
 function teamTables(variantToDisplay){
 	outputHTML = '';
 	array10 = retrieve(variantToDisplay);
-	console.log(array10)
+	console.log("there");
+	console.log(localStorage['counter']);
+	console.log(array10);
 
 	outputHTML += '<tbody>';
 	outputHTML += '<tr>';
-	outputHTML += '<th>' + array10[array10.length - 1][21] + '</th>' + "<th>" + array10[array10.length - 1][22] + '</th>' + "<th><button type = 'button' id = 'teamPage' onclick =\"document.location='variant1.html'\"></button></th>";
+	outputHTML += '<th>' + array10[array10.length - 1][21] + '</th>' + "<th>" + array10[array10.length - 1][22] + '</th>' + "<th><button type = 'button' id = 'teamPage' onclick = \"" + setTeam(variantToDisplay) + ";document.location='variant1.html'\";></button></th>";
 	outputHTML += '<tr>';
 	outputHTML += '<th>Wins</th>' + '<th>Losses</th>' + '<th>OTL</th>';
 	outputHTML += '</tr>';
@@ -283,6 +285,10 @@ function teamTables(variantToDisplay){
 	outputHTML += '</tbody>';
 
 	document.getElementById("table1").innerHTML += (outputHTML);
+}
+
+function setTeam(teamToSet){
+	localStorage['team'] = teamToSet;
 }
 </script>
 
