@@ -67,9 +67,9 @@
 	</form>	
 	<table id = "table1">
 	</table>	
-	<button type="button" id ="button2"><i class="glyphicon glyphicon-cloud"></i></button>
+	<button type="button" id ="button2"><i class="glyphicon glyphicon-user"></i></button>
 	<button type="button" id ="button"><i class="glyphicon glyphicon-cloud"></i></button>
-	<button type="button" id ="button3"><i class="glyphicon glyphicon-cloud"></i></button>
+	<button type="button" id ="button3"><i class="glyphicon glyphicon-list"></i></button>
 </div>
 
 
@@ -124,6 +124,7 @@ Team Stats
 
 
 document.getElementById('button').addEventListener('click', upload);
+
 //localStorage.clear();
 
 async function upload(){
@@ -255,7 +256,7 @@ function teamTables(variantToDisplay){
 
 	outputHTML += '<tbody>';
 	outputHTML += '<tr>';
-	outputHTML += '<th>' + array10[array10.length - 1][21] + '</th>' + "<th>" + array10[array10.length - 1][22] + '</th>' + "<th><button type = 'button' id = 'teamPage'></></th>";
+	outputHTML += '<th>' + array10[array10.length - 1][21] + '</th>' + "<th>" + array10[array10.length - 1][22] + '</th>' + "<th><button type = 'button' id = 'teamPage' onclick =\"document.location='variant1.html'\"></button></th>";
 	outputHTML += '<tr>';
 	outputHTML += '<th>Wins</th>' + '<th>Losses</th>' + '<th>OTL</th>';
 	outputHTML += '</tr>';
@@ -283,7 +284,6 @@ function teamTables(variantToDisplay){
 
 	document.getElementById("table1").innerHTML += (outputHTML);
 }
-
 </script>
 
 </body>
