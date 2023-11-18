@@ -6,42 +6,65 @@
 <title>Page Title</title>
 <style>
 	#thatone{
-		position:absolute;
-		width: 100%;
-		height: 100%;
+		position: absolute;
 		top: 0px;
-		left: 0px;
+		height: 100%;
 		float: top;
+		background-color: black;
+		display: block;
+		overflow: auto;
+		z-index: 1;
+	}
+	#thattwo{
+		position: relative;
+		height: 100%;
+		background-color: black;
+		z-index: 1;
+	}
+	#thatthree{
+		position: absolute;
+		display: flex;
+		align-items: flex-start;
+		top: 0px;
+		height: 117.5%;
+		width: 100%;
 		background-color: black;
 	}
 	#button{
 		position: sticky;
 		bottom: 0px;
-		float: bottom;
+		width: 66.67%;
+		height: 15%;
 		float: left;
-		width: 66%;
-		height: 100px;
-		
+		align-self: flex-end;
+		z-index: 2;
 	}
-	#button2, #button3{
+	#button2{
 		position: sticky;
+		float: left;
 		bottom: 0px;
-		float: bottom;
-		float: left;
 		width: 16.6%;
-		height: 100px;
+		height: 15%;
+		align-self: flex-end;
+		z-index: 2;
 	}
-	tbody{
-		position:relative;
-		margin-top: 2.5%;
-		margin-left: 2.5%;
+	#button3{
+		position: sticky;
 		float: left;
+		bottom: 0px;
+		width: 16.6%;
+		height: 15%;
+		align-self: flex-end;
+		z-index: 2;
 	}
-	#table1{
+	table{
+		table-layout: fixed;
 		position: relative;
-		width: 100%;
-		height: 100%;
-		background-color: black;
+		width: 33%;
+		height: 33%;
+		float: left;
+		font-size: 90%;
+		background-color: grey;
 	}
 	td{
 		border: 1px solid;
@@ -54,11 +77,14 @@
 	}
 	#teamPage{
 		display: inline-block;	
-		height: 18px;
+		height: 100%;
 		width: 100%;
 	}
 	.html{
 		background-color: black;
+	}
+	html, body{
+		height: 100%;
 	}
 </style>
 </head>
@@ -66,13 +92,16 @@
 <div id = "thatone">
 	<form id ='CSV' method="post" enctype="multipart/form-data">
 		<input id="CSVfile" name="file" type="file" accept=".csv" />
-	</form>	
-	<table id = "table1">
-	</table>	
-	<button type="button" id ="button2" onclick = "document.location = 'playerStats.html'"><i class="glyphicon glyphicon-user"></i></button>
-	<button type="button" id ="button"><i class="glyphicon glyphicon-cloud"></i></button>
-	<button type="button" id ="button3"><i class="glyphicon glyphicon-list"></i></button>
+	</form>
+	<div id = "thattwo">
+	</div>
+	</div>
+<div id = "thatthree">
+<button type="button" id ="button2" onclick = "document.location = 'playerStats.html'"><i class="glyphicon glyphicon-user"></i></button>
+<button type="button" id ="button"><i class="glyphicon glyphicon-cloud"></i></button>
+<button type="button" id ="button3"><i class="glyphicon glyphicon-list"></i></button>
 </div>
+
 <script>
 	document.getElementById('button').addEventListener('click', upload);
 	console.log(localStorage['variant3']);

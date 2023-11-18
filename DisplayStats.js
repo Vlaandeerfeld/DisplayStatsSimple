@@ -167,7 +167,7 @@ function teamTables(variantToDisplay){
 	console.log(localStorage['counter']);
 	console.log(array10);
 
-	outputHTML += '<tbody>';
+	outputHTML += '<table>';
 	outputHTML += '<tr>';
 	outputHTML += '<th>' + array10[array10.length - 1][21] + '</th>' + "<th>" + array10[array10.length - 1][22] + '</th>' + "<th><button type = 'button' id = 'teamPage' onclick = \"setTeam('" + variantToDisplay + "');document.location='variant1.html';\"></button></th>";
     outputHTML += '</tr>';
@@ -193,11 +193,11 @@ function teamTables(variantToDisplay){
 	outputHTML += '<th>ESG/Game</th>' + '<th>PPG/Game</th>' + '<th>SHG/Game</th>';
 	outputHTML += '</tr>';
 	outputHTML += "<tr>";
-	outputHTML += "<td>" + ((parseInt(array10[array10.length - 1][33]) - parseInt(array10[array10.length - 1][45]) - parseInt(array10[array10.length - 1][49])) / parseInt(array10[array10.length - 1][24])).toFixed(2) + "</td>" + "<td>" + (parseInt(array10[array10.length - 1][45]) / parseInt(array10[array10.length - 1][24])).toFixed(2) + "</td>" + "<td>" + (parseInt(array10[array10.length - 1][49]) / array10[array10.length - 1][24]).toFixed(2) + "</td>";
+	outputHTML += "<td>" + (((parseInt(array10[array10.length - 1][33]) - parseInt(array10[array10.length - 1][45])) - parseInt(array10[array10.length - 1][49])) / parseInt(array10[array10.length - 1][32])).toFixed(2) + "</td>" + "<td>" + (parseInt(array10[array10.length - 1][45]) / parseInt(array10[array10.length - 1][32])).toFixed(2) + "</td>" + "<td>" + (parseInt(array10[array10.length - 1][49]) / array10[array10.length - 1][32]).toFixed(2) + "</td>";
 	outputHTML += "</tr>";
-	outputHTML += '</tbody>';
+	outputHTML += '</table>';
 
-	document.getElementById("table1").innerHTML += outputHTML;
+	document.getElementById("thattwo").insertAdjacentHTML("afterbegin", outputHTML);
 }
 
 function teamLines(){
