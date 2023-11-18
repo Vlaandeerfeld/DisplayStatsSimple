@@ -260,15 +260,77 @@ function teamStatsRow(numberOfElements){
     }
     return outputHTML;
 }
-function teamStatsTable(teamStatRow){
+function playerStatsRow(numberOfElements){
+	outputHTML = '';
+	for(let x = localStorage['counter']; x > 0; x--){
+		array10 = retrieve('variant' + x.toString());
+		let z = 0;
+		let y = array10.length - 2;
+		while (y > 0){
+      	  	outputHTML += '<tr>';
+      	 	outputHTML += '<td>' + array10[array10.length - 1][22] + '</td>' + '<td>' + array10[y][1] + '</td>' + '<td>' + array10[y][2] + '</td>';    
+      	  	z = 0;
+       	 	while (z < numberOfElements){
+	    	    outputHTML += '<td>' + array10[y][66 + z] + " " + '</td>';
+         		z++;
+       	 	}
+       	 	outputHTML += '</tr>';
+       	 	y--;
+    	}
+	}
+    return outputHTML;
+}
+function teamStatsTable(){
     outputHTML = '';
     outputHTML += '<tbody>';
     outputHTML += '<th>First Name</th><th>Last Name</th><th>GP</th><th>G</th><th>A</th><th>+/-</th><th>PIM</th><th>PPG</th><th>PPA</th><th>SHG</th><th>SHA</th><th>Fights</th><th>Fights Won</th><th>Hits</th><th>GvA</th><th>TkA</th><th>SB</th>';
 	outputHTML += teamStatsRow(15)
     outputHTML += '</tbody>';
     document.getElementById('table2').innerHTML = outputHTML;
-
+}
+function playerStatsTable(){
+	outputHTML = '';
+    outputHTML += "<tbody id = 'something'>";
+    outputHTML += '<th>Team</th><th>First Name</th><th>Last Name</th><th>GP</th><th>G</th><th>A</th><th>+/-</th><th>PIM</th><th>PPG</th><th>PPA</th><th>SHG</th><th>SHA</th><th>Fights</th><th>Fights Won</th><th>Hits</th><th>GvA</th><th>TkA</th><th>SB</th>';
+	outputHTML += playerStatsRow(15)
+    outputHTML += '</tbody>';
+    document.getElementById('table1').innerHTML = outputHTML;
 }
 function setTeam(teamToSet){
 	localStorage.setItem('team', teamToSet);
+}
+function sortTable(){
+	var table, rows, switching, i, x, y, shouldSwitch;
+	table = document.getElementById("table1");
+	table = table.firstChild;
+	switching = true;
+	/* Make a loop that will continue until
+	no switching has been done: */
+	while (switching) {
+	  // Start by saying: no switching is done:
+	  switching = false;
+	  rows = table.rows;
+	  /* Loop through all table rows (except the
+	  first, which contains table headers): */
+	  for (i = 1; i < (rows.length - 1); i++) {
+		// Start by saying there should be no switching:
+		shouldSwitch = false;
+		/* Get the two elements you want to compare,
+		one from current row and one from the next: */
+		x = rows[i].getElementsByTagName("TD")[4];
+		y = rows[i + 1].getElementsByTagName("TD")[4];
+		// Check if the two rows should switch place:
+		if (x.innerHTML - y.innerHTML < 0) {
+		  // If so, mark as a switch and break the loop:
+		  shouldSwitch = true;
+		  break;
+		}
+	  }
+	  if (shouldSwitch) {
+		/* If a switch has been marked, make the switch
+		and mark that a switch has been done: */
+		rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+		switching = true;
+		}
+	}
 }
