@@ -46,52 +46,58 @@ Team Stats
 30 = Points			37 = FO%	44 = PP Ch	51 = ATT Total Away
 */
 
-//localStorage.clear();
+function clearTables(){
+	localStorage.clear();
+}
 
 async function upload(){
 	const input = await document.getElementById('CSVfile');
-	const reader = await new FileReader();	
-	const input1 = await input.files[0];
-	await reader.readAsText(input1);	
+	const input1 = await input.files;
+	console.log(input1);
+	for (let x = 0; x < input1.length; x++){
+		const reader = await new FileReader();	
+		await reader.readAsText(input1[x]);
 	
-	reader.onload = function(){
-		let headers = [];
-		let rows = [];
-		let input2 = reader.result;
-		headers = input2.slice(0, input2.indexOf("\n")).split(",");
-		rows = input2.slice(input2.indexOf("\n") + 1).split(",");
-		let array3 = [];
-		console.log(headers.length);
-		for (let k = 0; k < headers.length; k++){
-			array3[headers[k]] = rows[k];
-		}
+		reader.onload = function(){
+			let headers = [];
+			let rows = [];
+			let input2 = reader.result;
+			headers = input2.slice(0, input2.indexOf("\n")).split(",");
+			rows = input2.slice(input2.indexOf("\n") + 1).split(",");
+			let array3 = [];
+			console.log(headers.length);
+			for (let k = 0; k < headers.length; k++){
+				array3[headers[k]] = rows[k];
+			}
 		
-		if (localStorage["counter"] == undefined){
-			console.log("here");
-			localStorage.setItem("counter", 1);
-		}
+			if (localStorage["counter"] == undefined){
+				console.log("here");
+				localStorage.setItem("counter", 1);
+			}
 
-		if (JSON.stringify(localStorage["variant" + localStorage["counter"]]) != JSON.stringify(rows.toString()) && localStorage.length > 1) {
-			localStorage.setItem("counter", parseInt(localStorage["counter"]) + 1);
-		}
-			
-		for (let p = 1;  p <= parseInt(localStorage["counter"]); p++){
-			if (JSON.stringify(localStorage["variant" + p.toString()]) == JSON.stringify(rows.toString()) && p >= 1){
-				break;
+			if (JSON.stringify(localStorage["variant" + localStorage["counter"]]) != JSON.stringify(rows.toString()) && localStorage.length > 1) {
+				localStorage.setItem("counter", parseInt(localStorage["counter"]) + 1);
 			}
 			
-			else{
-				localStorage.setItem("variant" + localStorage["counter"], `${array3["TeamId"]}`);
-				for (let q in array3){
-					if (q != "TeamId"){
-						localStorage.setItem("variant" + localStorage["counter"], [localStorage["variant" + localStorage["counter"]], `${array3[q]}`]);
-					}
+			for (let p = 1;  p <= parseInt(localStorage["counter"]); p++){
+				if (JSON.stringify(localStorage["variant" + p.toString()]) == JSON.stringify(rows.toString()) && p >= 1){
+					break;
 				}
-				break;
+			
+				else{
+					localStorage.setItem("variant" + localStorage["counter"], `${array3["TeamId"]}`);
+					for (let q in array3){
+						if (q != "TeamId"){
+							localStorage.setItem("variant" + localStorage["counter"], [localStorage["variant" + localStorage["counter"]], `${array3[q]}`]);
+						}
+					}
+					break;
+				}
 			}
+			console.log(headers);
+			FileReader.abort()
+			teamTables('variant' + localStorage['counter'] + 1);
 		}
-		console.log(headers);
-		teamTables('variant' + localStorage['counter'] + 1);
 	}
 }
 
@@ -197,7 +203,7 @@ function teamTables(variantToDisplay){
 	outputHTML += "</tr>";
 	outputHTML += '</table>';
 
-	document.getElementById("thattwo").insertAdjacentHTML("afterbegin", outputHTML);
+	document.getElementById("CSV").insertAdjacentHTML("afterend", outputHTML);
 }
 
 function teamLines(){

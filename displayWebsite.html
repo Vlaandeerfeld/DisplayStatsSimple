@@ -7,32 +7,36 @@
 <style>
 	#thatone{
 		position: absolute;
-		top: 0px;
 		height: 100%;
-		float: top;
+		width: 100%;
+		top: 0px;
+		left: 0px;
 		background-color: black;
-		display: block;
+   	 	float: top; 
 		overflow: auto;
 		z-index: 1;
+		display: flex;
+		align-items: flex-start;
 	}
 	#thattwo{
 		position: relative;
 		height: 100%;
+		width: 100%;
+		display: block;
+		float: left;
 		background-color: black;
 		z-index: 1;
 	}
 	#thatthree{
-		position: absolute;
-		display: flex;
-		align-items: flex-start;
-		top: 0px;
-		height: 117.5%;
+		position: relative;
 		width: 100%;
+		float: left;
 		background-color: black;
 	}
 	#button{
 		position: sticky;
 		bottom: 0px;
+		left: 0px;
 		width: 66.67%;
 		height: 15%;
 		float: left;
@@ -41,10 +45,10 @@
 	}
 	#button2{
 		position: sticky;
-		float: left;
 		bottom: 0px;
 		width: 16.6%;
 		height: 15%;
+		float: left;
 		align-self: flex-end;
 		z-index: 2;
 	}
@@ -56,6 +60,11 @@
 		height: 15%;
 		align-self: flex-end;
 		z-index: 2;
+	}
+	#buttonClear{
+		float: left;
+		width: 30%;
+		height: 7.5%;
 	}
 	table{
 		table-layout: fixed;
@@ -80,30 +89,33 @@
 		height: 100%;
 		width: 100%;
 	}
-	.html{
-		background-color: black;
-	}
-	html, body{
-		height: 100%;
+	#CSV{
+		float: left;
+		height: 7.5%;
+		width: 40%;
 	}
 </style>
 </head>
 <body>
 <div id = "thatone">
-	<form id ='CSV' method="post" enctype="multipart/form-data">
-		<input id="CSVfile" name="file" type="file" accept=".csv" />
-	</form>
 	<div id = "thattwo">
+		<button type="button" id ="buttonClear" onclick = clearTables()>Clear</button>
+		<form id ='CSV' method="post" enctype="multipart/form-data">
+			<input id="CSVfile" name="file[]" type="file" accept=".csv" multiple="multiple" />
+		</form>
+
+	<div id = "thatthree">
 	</div>
+
+	<button type="button" id ="button2" onclick = "document.location = 'playerStats.html'"><i class="glyphicon glyphicon-user"></i></button>
+	<button type="button" id ="button"><i class="glyphicon glyphicon-cloud"></i></button>
+	<button type="button" id ="button3"><i class="glyphicon glyphicon-list"></i></button>
 	</div>
-<div id = "thatthree">
-<button type="button" id ="button2" onclick = "document.location = 'playerStats.html'"><i class="glyphicon glyphicon-user"></i></button>
-<button type="button" id ="button"><i class="glyphicon glyphicon-cloud"></i></button>
-<button type="button" id ="button3"><i class="glyphicon glyphicon-list"></i></button>
 </div>
 
 <script>
 	document.getElementById('button').addEventListener('click', upload);
+	document.getElementById('buttonClear').addEventListener('click', clearTables);
 	console.log(localStorage['variant3']);
 	console.log(localStorage['counter']);
 
