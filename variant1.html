@@ -2,87 +2,27 @@
 <html>
 <head>
 <script src="DisplayStats.js"></script>
+<link rel="stylesheet" href="DisplayWebsite.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <title>Page Title</title>
-<style>
-	table{
-		float: top;
-		border: 1px solid white;
-		margin-top: 2.5%;
-		margin-left: 2.5%;
-		border-spacing: 25px;
-		background-color: grey;
-	}
-	th, td{
-		padding: 2.5%, 2.5%, 2.5%, 2.5%;
-		background-color: darkgrey;
-	}
-	body{
-		background-color: black;
-	}
-	#thatone{
-		position: absolute;
-		top: 0px;
-		height: 100%;
-		float: top;
-		background-color: black;
-		display: block;
-		overflow: auto;
-		z-index: 1;
-	}
-	#thatthree{
-		position: absolute;
-		display: flex;
-		align-items: flex-start;
-		top: 0px;
-		height: 117.5%;
-		width: 100%;
-		background-color: black;
-	}
-	#button{
-		position: sticky;
-		bottom: 0px;
-		width: 66.67%;
-		height: 15%;
-		float: left;
-		align-self: flex-end;
-		z-index: 2;
-	}
-	#button2{
-		position: sticky;
-		float: left;
-		bottom: 0px;
-		width: 16.6%;
-		height: 15%;
-		align-self: flex-end;
-		z-index: 2;
-	}
-	#button3{
-		position: sticky;
-		float: left;
-		bottom: 0px;
-		width: 16.6%;
-		height: 15%;
-		align-self: flex-end;
-		z-index: 2;
-	}
-</style>
 </head>
 <body>
 
-	<div id = "thatone">	
+	<div id = "thatone">
+		<div id = "thattwo">
 		<table id = "table1">
 		</table>
    		<table id = "table2">
   		</table>
-	</div>
 	<div id = "thatthree">
+		</div>
 		<button type="button" id ="button2" onclick = "document.location = 'playerStats.html'"><i class="glyphicon glyphicon-user"></i></button>
-		<button type="button" id ="button" onclick = "document.location = 'displayWebsite.html'"><i class="glyphicon glyphicon-cloud"></i></button>
+		<button type="button" id ="button" onclick = "document.location = 'displayWebsite.html'"><i class="glyphicon glyphicon-home"></i></button>
 		<button type="button" id ="button3"><i class="glyphicon glyphicon-list"></i></button>
 	</div>	
+</div>
 	<script>
 	teamLines();
 	teamStatsTable();

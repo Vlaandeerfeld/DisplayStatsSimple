@@ -2,55 +2,10 @@
 <html>
 <head>
 <script src="DisplayStats.js"></script>
+<link rel="stylesheet" href="DisplayWebsite.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <title>Page Title</title>
 <style>
-	#thatone{
-		position: absolute;
-		top: 0px;
-		height: 100%;
-		float: top;
-		background-color: black;
-		display: block;
-		overflow: auto;
-		z-index: 1;
-	}
-	#thatthree{
-		position: absolute;
-		display: flex;
-		align-items: flex-start;
-		top: 0px;
-		height: 117.5%;
-		width: 100%;
-		background-color: black;
-	}
-	#button{
-		position: sticky;
-		bottom: 0px;
-		width: 66.67%;
-		height: 15%;
-		float: left;
-		align-self: flex-end;
-		z-index: 2;
-	}
-	#button2{
-		position: sticky;
-		float: left;
-		bottom: 0px;
-		width: 16.6%;
-		height: 15%;
-		align-self: flex-end;
-		z-index: 2;
-	}
-	#button3{
-		position: sticky;
-		float: left;
-		bottom: 0px;
-		width: 16.6%;
-		height: 15%;
-		align-self: flex-end;
-		z-index: 2;
-	}
 	tbody{
 		position:relative;
 		margin-top: 2.5%;
@@ -81,23 +36,19 @@
 		height: 18px;
 		width: 100%;
 	}
-	.html{
-		background-color: black;
-	}
 </style>
 </head>
 <body>
 <div id = "thatone">
-	<form id ='CSV' method="post" enctype="multipart/form-data">
-		<input id="CSVfile" name="file" type="file" accept=".csv" />
-	</form>	
+	<div id = "thattwo">
 	<table id = "table1">
 	</table>	
-</div>
-<div id = "thatthree">
-	<button type="button" id ="button2" onclick = "document.location = 'playerStats.html'"><i class="glyphicon glyphicon-user"></i></button>
-	<button type="button" id ="button" onclick = "document.location = 'displayWebsite.html'"><i class="glyphicon glyphicon-cloud"></i></button>
-	<button type="button" id ="button3"><i class="glyphicon glyphicon-list"></i></button>
+	<div id = "thatthree">
+	</div>
+		<button type="button" id ="button2" onclick = "document.location = 'playerStats.html'"><i class="glyphicon glyphicon-user"></i></button>
+		<button type="button" id ="button" onclick = "document.location = 'displayWebsite.html'"><i class="glyphicon glyphicon-home"></i></button>
+		<button type="button" id ="button3"><i class="glyphicon glyphicon-list"></i></button>
+	</div>
 </div>
     <script>
 	    playerStatsTable();

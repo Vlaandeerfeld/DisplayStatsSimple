@@ -1,0 +1,88 @@
+#thatone{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    overflow: auto;
+    z-index: 1;
+    display: flex;
+    align-items: start;
+}
+#thattwo{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: block;
+    float: left;
+    background-color: black;
+    z-index: 1;
+}
+#thatthree{
+    position: relative;
+    width: 100%;
+    float: left;
+    margin-top: 100%;
+    background-color: black;
+    display: block;
+}
+#button{
+    position: sticky;
+    bottom: 0px;
+    left: 0px;
+    width: 66.67%;
+    height: 15%;
+    float: left;
+    align-self: flex-end;
+    z-index: 2;
+}
+#button2{
+    position: sticky;
+    bottom: 0px;
+    width: 16.6%;
+    height: 15%;
+    float: left;
+    align-self: flex-end;
+    z-index: 2;
+}
+#button3{
+    position: sticky;
+    float: left;
+    bottom: 0px;
+    width: 16.6%;
+    height: 15%;
+    align-self: flex-end;
+    z-index: 2;
+}
+#buttonClear{
+    float: left;
+    width: 30%;
+    height: 7.5%;
+}
+table{
+    table-layout: fixed;
+    position: relative;
+    width: 33.33%;
+    height: 33.33%;
+    float: left;
+    font-size: 90%;
+    background-color: grey;
+}
+td{
+    border: 1px solid;
+    text-align: center;
+    background-color: grey;
+}
+th{
+    background-color: darkgrey;
+    text-align: center;
+}
+#teamPage{
+    display: inline-block;	
+    height: 100%;
+    width: 100%;
+}
+#CSV{
+    float: left;
+    height: 7.5%;
+    width: 40%;
+}
