@@ -173,7 +173,7 @@ function teamTables(variantToDisplay){
 	console.log(localStorage['counter']);
 	console.log(array10);
 
-	outputHTML += '<table>';
+	outputHTML += "<table id = 'displayWebsite'>";
 	outputHTML += '<tr>';
 	outputHTML += '<th>' + array10[array10.length - 1][21] + '</th>' + "<th>" + array10[array10.length - 1][22] + '</th>' + "<th><button type = 'button' id = 'teamPage' onclick = \"setTeam('" + variantToDisplay + "');document.location='variant1.html';\"></button></th>";
     outputHTML += '</tr>';
@@ -209,7 +209,6 @@ function teamTables(variantToDisplay){
 function teamLines(){
     array10 = retrieve(localStorage['team']); 
     outputHTML = '';
-    outputHTML += '<tbody>';
 	outputHTML += '<tr>';
 	outputHTML += '<th>' + array10[array10.length - 1][21] + '</th>' + "<th>" + array10[array10.length - 1][22] + '</th>' + "<th>Team Lines</th>";
 	outputHTML += '<tr>';
@@ -244,8 +243,7 @@ function teamLines(){
 	outputHTML += "</tr>";
 	outputHTML += "<tr>";
 	outputHTML += "<td>" + array10[array10.length - 1][19] + "</td>" + "<td>" + array10[array10.length - 1][20] + "</td>";
-	outputHTML += "</tr>";
-	outputHTML += '</tbody>'; 
+	outputHTML += "</tr>"; 
     document.getElementById('table1').innerHTML = outputHTML;
 }
 function teamStatsRow(numberOfElements){
@@ -288,18 +286,14 @@ function playerStatsRow(numberOfElements){
 }
 function teamStatsTable(){
     outputHTML = '';
-    outputHTML += '<tbody>';
     outputHTML += '<th>First Name</th><th>Last Name</th><th>GP</th><th>G</th><th>A</th><th>+/-</th><th>PIM</th><th>PPG</th><th>PPA</th><th>SHG</th><th>SHA</th><th>Fights</th><th>Fights Won</th><th>Hits</th><th>GvA</th><th>TkA</th><th>SB</th>';
 	outputHTML += teamStatsRow(15)
-    outputHTML += '</tbody>';
     document.getElementById('table2').innerHTML = outputHTML;
 }
 function playerStatsTable(){
 	outputHTML = '';
-    outputHTML += "<tbody id = 'something'>";
-    outputHTML += '<th>Team</th><th>First Name</th><th>Last Name</th><th>GP</th><th>G</th><th>A</th><th>+/-</th><th>PIM</th><th>PPG</th><th>PPA</th><th>SHG</th><th>SHA</th><th>Fights</th><th>Fights Won</th><th>Hits</th><th>GvA</th><th>TkA</th><th>SB</th>';
+    outputHTML += '<tr><th>Team</th><th>First Name</th><th>Last Name</th><th>GP</th><th>G</th><th>A</th><th>+/-</th><th>PIM</th><th>PPG</th><th>PPA</th><th>SHG</th><th>SHA</th><th>Fights</th><th>Fights Won</th><th>Hits</th><th>GvA</th><th>TkA</th><th>SB</th></tr>';
 	outputHTML += playerStatsRow(15)
-    outputHTML += '</tbody>';
     document.getElementById('table1').innerHTML = outputHTML;
 }
 function displayTeams(){

@@ -58,15 +58,6 @@
     width: 30%;
     height: 7.5%;
 }
-table{
-    table-layout: fixed;
-    position: relative;
-    width: 33.33%;
-    height: 33.33%;
-    float: left;
-    font-size: 90%;
-    background-color: grey;
-}
 td{
     border: 1px solid;
     text-align: center;

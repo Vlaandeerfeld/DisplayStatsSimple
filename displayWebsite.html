@@ -1,38 +1,49 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="DisplayWebsite.css">
-<script src="DisplayStats.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<title>Page Title</title>
+	<link rel="stylesheet" href="DisplayWebsite.css">
+	<script src="DisplayStats.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<title>Page Title</title>
 </head>
 <body>
-<div id = "thatone">
-	<div id = "thattwo">
-		<button type="button" id ="buttonClear" onclick = clearTables()>Clear</button>
-		<form id ='CSV' method="post" enctype="multipart/form-data">
-			<input id="CSVfile" name="file[]" type="file" accept=".csv" multiple="multiple" />
-		</form>
-		<div id = "thatthree">
+	<div id = "thatone">
+		<div id = "thattwo">
+			<button type="button" id ="buttonClear" onclick = clearTables()>Clear</button>
+			<form id ='CSV' method="post" enctype="multipart/form-data">
+				<input id="CSVfile" name="file[]" type="file" accept=".csv" multiple="multiple" />
+			</form>
+			<div id = "thatthree">
+			</div>
+			<button type="button" id ="button2" onclick = "document.location = 'playerStats.html'"><i class="glyphicon glyphicon-user"></i></button>
+			<button type="button" id ="button"><i class="glyphicon glyphicon-cloud"></i></button>
+			<button type="button" id ="button3" onclick = "document.location = 'teamsStats.html'"><i class="glyphicon glyphicon-list"></i></button>
 		</div>
-		<button type="button" id ="button2" onclick = "document.location = 'playerStats.html'"><i class="glyphicon glyphicon-user"></i></button>
-		<button type="button" id ="button"><i class="glyphicon glyphicon-cloud"></i></button>
-		<button type="button" id ="button3" onclick = "document.location = 'teamsStats.html'"><i class="glyphicon glyphicon-list"></i></button>
 	</div>
-</div>
 
-<script>
-	document.getElementById('button').addEventListener('click', upload);
-	document.getElementById('buttonClear').addEventListener('click', clearTables);
-	console.log(localStorage['variant3']);
-	console.log(localStorage['counter']);
+	<script>
+		document.getElementById('button').addEventListener('click', upload);
+		document.getElementById('buttonClear').addEventListener('click', clearTables);
+		console.log(localStorage['variant3']);
+		console.log(localStorage['counter']);
 
-	let x = localStorage['counter'];
+		let x = localStorage['counter'];
 
-	while(x > 0){
-		teamTables('variant' + x);
-		x--;
-	}
-</script>
+		while(x > 0){
+			teamTables('variant' + x);
+			x--;
+		}
+	</script>
+	<style>
+		#displayWebsite{
+    		table-layout: fixed;
+    		position: relative;
+    		width: 33.33%;
+    		height: 33.33%;
+    		float: left;
+    		font-size: 90%;
+    		background-color: grey;
+		}
+	</style>
 </body>
 </html>
