@@ -50,6 +50,12 @@ function clearTables(){
 	localStorage.clear();
 }
 
+async function uploadTemplate(){
+	fetch("csvsToUpload/'detroit red wings.csv'")
+		.then((response) => response.text())
+		.then((data) => console.log(data));
+}
+
 async function upload(){
 	const input = await document.getElementById('CSVfile');
 	const input1 = await input.files;
@@ -59,46 +65,49 @@ async function upload(){
 		await reader.readAsText(input1[x]);
 	
 		reader.onload = function(){
-			let headers = [];
-			let rows = [];
 			let input2 = reader.result;
-			headers = input2.slice(0, input2.indexOf("\n")).split(",");
-			rows = input2.slice(input2.indexOf("\n") + 1).split(",");
-			let array3 = [];
-			console.log(headers.length);
-			for (let k = 0; k < headers.length; k++){
-				array3[headers[k]] = rows[k];
-			}
-		
-			if (localStorage["counter"] == undefined){
-				console.log("here");
-				localStorage.setItem("counter", 1);
-			}
-
-			if (JSON.stringify(localStorage["variant" + localStorage["counter"]]) != JSON.stringify(rows.toString()) && localStorage.length > 1) {
-				localStorage.setItem("counter", parseInt(localStorage["counter"]) + 1);
-			}
-			
-			for (let p = 1;  p <= parseInt(localStorage["counter"]); p++){
-				if (JSON.stringify(localStorage["variant" + p.toString()]) == JSON.stringify(rows.toString()) && p >= 1){
-					break;
-				}
-			
-				else{
-					localStorage.setItem("variant" + localStorage["counter"], `${array3["TeamId"]}`);
-					for (let q in array3){
-						if (q != "TeamId"){
-							localStorage.setItem("variant" + localStorage["counter"], [localStorage["variant" + localStorage["counter"]], `${array3[q]}`]);
-						}
-					}
-					break;
-				}
-			}
-			console.log(headers);
-			FileReader.abort()
-			teamTables('variant' + localStorage['counter'] + 1);
+			checkAndUpload(input2);
 		}
 	}
+}
+function checkAndUpload(fileInput){
+	let headers = [];
+	let rows = [];
+	headers = fileInput.slice(0, fileInput.indexOf("\n")).split(",");
+	rows = fileInput.slice(fileInput.indexOf("\n") + 1).split(",");
+	let array3 = [];
+	console.log(headers.length);
+	for (let k = 0; k < headers.length; k++){
+		array3[headers[k]] = rows[k];
+	}
+		
+	if (localStorage["counter"] == undefined){
+		console.log("here");			
+		localStorage.setItem("counter", 1);
+	}
+
+	if (JSON.stringify(localStorage["variant" + localStorage["counter"]]) != JSON.stringify(rows.toString()) && localStorage.length > 1) {
+		localStorage.setItem("counter", parseInt(localStorage["counter"]) + 1);
+	}
+			
+	for (let p = 1;  p <= parseInt(localStorage["counter"]); p++){
+		if (JSON.stringify(localStorage["variant" + p.toString()]) == JSON.stringify(rows.toString()) && p >= 1){
+			break;
+		}
+			
+		else{
+			localStorage.setItem("variant" + localStorage["counter"], `${array3["TeamId"]}`);
+			for (let q in array3){
+				if (q != "TeamId"){
+					localStorage.setItem("variant" + localStorage["counter"], [localStorage["variant" + localStorage["counter"]], `${array3[q]}`]);
+				}
+			}
+			break;
+		}
+	}
+	console.log(headers);
+	FileReader.abort()
+	teamTables('variant' + localStorage['counter'] + 1);
 }
 
 function retrieve(variantToRetrieve){
@@ -203,7 +212,7 @@ function teamTables(variantToDisplay){
 	outputHTML += "</tr>";
 	outputHTML += '</table>';
 
-	document.getElementById("CSV").insertAdjacentHTML("afterend", outputHTML);
+	document.getElementById("buttonTemplate").insertAdjacentHTML("afterend", outputHTML);
 }
 
 function teamLines(){

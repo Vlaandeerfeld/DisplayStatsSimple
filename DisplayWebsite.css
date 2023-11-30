@@ -58,6 +58,11 @@
     width: 30%;
     height: 7.5%;
 }
+#buttonTemplate{
+    float: left;
+    width: 30%;
+    height: 7.5%;
+}
 td{
     border: 1px solid;
     text-align: center;
