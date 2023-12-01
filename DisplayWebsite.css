@@ -69,9 +69,10 @@ td{
     background-color: grey;
 }
 th{
+    text-align: center !important;
     background-color: darkgrey;
-    text-align: center;
 }
+
 #teamPage{
     display: inline-block;	
     height: 100%;

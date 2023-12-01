@@ -216,7 +216,9 @@ function teamTables(variantToDisplay){
 	outputHTML = '';
 	array10 = retrieve(variantToDisplay);
 
+	outputHTML += "<button type = 'button' id = 'hotmail' onclick = \"setTeam('" + variantToDisplay + "');document.location='variant1.html';\">";
 	outputHTML += "<table id = 'displayWebsite'>";
+	outputHTML += '<tbody>';
 	outputHTML += '<tr>';
 	outputHTML += '<th>' + array10[array10.length - 1][21] + '</th>' + "<th>" + array10[array10.length - 1][22] + '</th>' + "<th><button type = 'button' id = 'teamPage' onclick = \"setTeam('" + variantToDisplay + "');document.location='variant1.html';\"></button></th>";
     outputHTML += '</tr>';
@@ -244,7 +246,9 @@ function teamTables(variantToDisplay){
 	outputHTML += "<tr>";
 	outputHTML += "<td>" + (((parseInt(array10[array10.length - 1][33]) - parseInt(array10[array10.length - 1][45])) - parseInt(array10[array10.length - 1][49])) / parseInt(array10[array10.length - 1][32])).toFixed(2) + "</td>" + "<td>" + (parseInt(array10[array10.length - 1][45]) / parseInt(array10[array10.length - 1][32])).toFixed(2) + "</td>" + "<td>" + (parseInt(array10[array10.length - 1][49]) / array10[array10.length - 1][32]).toFixed(2) + "</td>";
 	outputHTML += "</tr>";
+	outputHTML += '</tbody>';
 	outputHTML += '</table>';
+	outputHTML += '</button>';
 
 	document.getElementById("buttonTemplate").insertAdjacentHTML("afterend", outputHTML);
 }
@@ -309,7 +313,7 @@ function teamStatsRow(numberOfElements){
 }
 function playerStatsRow(numberOfElements){
 	outputHTML = '';
-	for(let x = localStorage['counter']; x > 0; x--){
+	for(let x = parseInt(localStorage['counter'] - 1); x > 0; x--){
 		array10 = retrieve('variant' + x.toString());
 		let z = 0;
 		let y = array10.length - 2;
@@ -349,7 +353,7 @@ function displayTeams(){
 }
 function displayTeamsRow(numberOfElements){
 	outputHTML = '';
-	for(let x = localStorage['counter']; x > 0; x--){
+	for(let x = localStorage['counter'] - 1; x > 0; x--){
 		array10 = retrieve('variant' + x.toString());
 		let z = 0;
 		let y = array10.length - 2;
