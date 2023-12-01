@@ -48,18 +48,49 @@ Team Stats
 
 function clearTables(){
 	localStorage.clear();
+	location.reload();
 }
 
 async function uploadTemplate(){
-	fetch("csvsToUpload/'detroit red wings.csv'")
-		.then((response) => response.text())
-		.then((data) => console.log(data));
+	let array4 = ['detroit red wings.csv', 'chicago blackhawks.csv', 'toronto maple leafs.csv', 'montreal canadians.csv', 'boston bruins.csv']
+	
+	for (let k = 0; k < array4.length; k++){
+		let upload4;
+		let data3;
+		console.log(k)
+		try{
+		data3 = await fetch('csvsToUpload/' + array4[k],  {
+            method: 'get',
+            headers: {
+                'content-type': 'text/csv;charset=UTF-8',
+                //'Authorization': //in case you need authorisation
+            }
+        });
+	}
+	catch(e){
+		console.log(e);
+	}
+		try{
+			upload4 = await data3.text();
+		}
+		catch(e){
+			console.log(e);
+		}
+		try{
+		checkAndUpload(upload4);
+		}
+		catch(e){
+			console.log(e);
+		}
+		
+
+    }
+	location.reload();
 }
 
 async function upload(){
 	const input = await document.getElementById('CSVfile');
 	const input1 = await input.files;
-	console.log(input1);
 	for (let x = 0; x < input1.length; x++){
 		const reader = await new FileReader();	
 		await reader.readAsText(input1[x]);
@@ -69,6 +100,7 @@ async function upload(){
 			checkAndUpload(input2);
 		}
 	}
+	location.reload();
 }
 function checkAndUpload(fileInput){
 	let headers = [];
@@ -76,52 +108,60 @@ function checkAndUpload(fileInput){
 	headers = fileInput.slice(0, fileInput.indexOf("\n")).split(",");
 	rows = fileInput.slice(fileInput.indexOf("\n") + 1).split(",");
 	let array3 = [];
-	console.log(headers.length);
+	let arrayBreak = [];
+	let continueThrough = false;
 	for (let k = 0; k < headers.length; k++){
 		array3[headers[k]] = rows[k];
 	}
 		
-	if (localStorage["counter"] == undefined){
-		console.log("here");			
+	if (localStorage["counter"] == undefined){		
 		localStorage.setItem("counter", 1);
 	}
-
-	if (JSON.stringify(localStorage["variant" + localStorage["counter"]]) != JSON.stringify(rows.toString()) && localStorage.length > 1) {
+		
+	for (let p = 1;  p <= parseInt(localStorage["counter"]); p++){
+		console.log(localStorage['counter']);
+		console.log(JSON.stringify(localStorage["variant" + p.toString()]) == JSON.stringify(rows.toString()));
+		if (JSON.stringify(localStorage["variant" + p.toString()]) == JSON.stringify(rows.toString()) && p >= 1){
+			arrayBreak.push(true);
+		}
+		else{
+			arrayBreak.push(false);
+		}
+	}
+	for (let n = 0; n < arrayBreak.length; n++){
+		console.log(arrayBreak[n]);
+		if (arrayBreak[n] == true){
+			continueThrough = false;
+			break;
+		}
+		else{
+			continueThrough = true;
+		}
+	}
+	if (continueThrough == true){
+		
+		localStorage.setItem("variant" + localStorage["counter"], `${array3["TeamId"]}`);
+		for (let q in array3){
+			if (q != "TeamId"){
+				localStorage.setItem("variant" + localStorage["counter"], [localStorage["variant" + localStorage["counter"]], `${array3[q]}`]);
+			}
+		}
 		localStorage.setItem("counter", parseInt(localStorage["counter"]) + 1);
 	}
-			
-	for (let p = 1;  p <= parseInt(localStorage["counter"]); p++){
-		if (JSON.stringify(localStorage["variant" + p.toString()]) == JSON.stringify(rows.toString()) && p >= 1){
-			break;
-		}
-			
-		else{
-			localStorage.setItem("variant" + localStorage["counter"], `${array3["TeamId"]}`);
-			for (let q in array3){
-				if (q != "TeamId"){
-					localStorage.setItem("variant" + localStorage["counter"], [localStorage["variant" + localStorage["counter"]], `${array3[q]}`]);
-				}
-			}
-			break;
-		}
-	}
-	console.log(headers);
-	FileReader.abort()
-	teamTables('variant' + localStorage['counter'] + 1);
+
+	FileReader.abort
+	teamTables('variant' + localStorage['counter']);
 }
 
 function retrieve(variantToRetrieve){
 	let that = [];
 	that = localStorage[variantToRetrieve].split(",");
 
-	console.log(that.length);
-	console.log((that.length - 57) % 138);
 	list10 = [];
 	list20 = [];
 	if ((that.length - 57) % 138 == 0){
 		y = (that.length - 57) / 138;
 		for(y; y >= 0; y--){
-			console.log(that[0] + " " + that[57]);
 			if ((y * 138) + 57 <= that.length && y != 0 && y != 1){
 				for (let u = 0; u < 138; u++){
 					list20.push(that[u + ((138 * (y - 1)) + 57)]);
@@ -139,7 +179,6 @@ function retrieve(variantToRetrieve){
 			else if (y == 0){
 				for (let u = 0; u < 57; u++) {
 					list20.push(that[u]);
-					console.log("here");
 				}
 				list10.push(list20);					
 			}
@@ -148,7 +187,6 @@ function retrieve(variantToRetrieve){
 	else if ((that.length - 82) % 176 == 0){
 		y = (that.length - 82) / 176;
 		for(y; y >= 0; y--){		
-			console.log((that.length - 82) % 176 == 0);
 			if ((y * 176) + 82 <= that.length && y != 0 && y != 1){
 				for (let u = 0; u < 176; u++){
 					list20.push(that[u + ((176 * (y - 1)) + 82)]);
@@ -166,7 +204,6 @@ function retrieve(variantToRetrieve){
 			else if (y == 0){
 				for (let u = 0; u < 82; u++) {
 					list20.push(that[u]);
-					console.log("here");
 				}
 				list10.push(list20);					
 			}
@@ -178,9 +215,6 @@ function retrieve(variantToRetrieve){
 function teamTables(variantToDisplay){
 	outputHTML = '';
 	array10 = retrieve(variantToDisplay);
-	console.log("there");
-	console.log(localStorage['counter']);
-	console.log(array10);
 
 	outputHTML += "<table id = 'displayWebsite'>";
 	outputHTML += '<tr>';

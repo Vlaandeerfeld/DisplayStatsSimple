@@ -25,10 +25,8 @@
 	<script>
 		document.getElementById('button').addEventListener('click', upload);
 		document.getElementById('buttonClear').addEventListener('click', clearTables);
-		console.log(localStorage['variant3']);
-		console.log(localStorage['counter']);
 
-		let x = localStorage['counter'];
+		let x = localStorage['counter'] - 1;
 
 		while(x > 0){
 			teamTables('variant' + x);
