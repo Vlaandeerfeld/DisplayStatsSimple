@@ -10,9 +10,9 @@
 	<div id = "thatone">
 		<div id = "thattwo">
 			<button type="button" id ="buttonClear" onclick = clearTables()>Clear</button>
-			<form id ='CSV' method="post" enctype="multipart/form-data">
+			<div id = 'CSV'>
 				<input id="CSVfile" name="file[]" type="file" accept=".csv" multiple="multiple" />
-			</form>
+			</div>
 			<button type="button" id ="buttonTemplate" onclick = uploadTemplate()>Template</button>
 			<div id = "thatthree">
 			</div>
@@ -23,6 +23,7 @@
 	</div>
 
 	<script>
+		console.log(localStorage['team']);
 		document.getElementById('button').addEventListener('click', upload);
 		document.getElementById('buttonClear').addEventListener('click', clearTables);
 

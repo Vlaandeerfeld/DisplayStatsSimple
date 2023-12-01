@@ -3,7 +3,6 @@
 <head>
 <script src="DisplayStats.js"></script>
 <link rel="stylesheet" href="DisplayWebsite.css">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <title>Page Title</title>
@@ -14,8 +13,6 @@
 		<div id = "thattwo">
 		<table id = "table1">
 		</table>
-   		<table id = "table2">
-  		</table>
 	<div id = "thatthree">
 		</div>
 		<button type="button" id ="button2" onclick = "document.location = 'playerStats.html'"><i class="glyphicon glyphicon-user"></i></button>
@@ -23,6 +20,16 @@
 		<button type="button" id ="button3" onclick = "document.location = 'teamsStats.html'"><i class="glyphicon glyphicon-list"></i></button>
 	</div>	
 </div>
+	<style>
+		#displayTeamsTable{
+			position: relative;
+			display: table;
+			table-layout: fixed;
+			width: 100%;
+			min-width: 100%;
+			background-color: black;
+		}
+	</style>
 	<script>
         displayTeams()
 	</script>

@@ -345,9 +345,9 @@ function playerStatsTable(){
 }
 function displayTeams(){
     outputHTML = '';
-    outputHTML += '<table>';
-    outputHTML += '<th>First Name</th><th>Last Name</th><th>GP</th><th>G</th><th>A</th><th>+/-</th><th>PIM</th><th>PPG</th><th>PPA</th><th>SHG</th><th>SHA</th><th>Fights</th><th>Fights Won</th><th>Hits</th><th>GvA</th><th>TkA</th><th>SB</th>';
-	outputHTML += displayTeamsRow(32)
+    outputHTML += '<table id = displayTeamsTable>';
+    outputHTML += '<th>Name</th><th>GP</th><th>Points</th><th>PCT</th><th>G</th><th>GA</th><th>S</th><th>SA</th><th>FO%</th><th>SB</th><th>Hits</th><th>Takeaways</th><th>Giveaways</th><th>InD</th><th>PIM/G</th><th>PPG</th><th>SHGA</th><th>SH Chances</th><th>PPGA</th><th>SH Chances</th><th>SHG</th>';
+	outputHTML += displayTeamsRow(17);
     outputHTML += '</table';
 	document.getElementById("thattwo").insertAdjacentHTML("afterbegin", outputHTML);
 }
@@ -357,17 +357,15 @@ function displayTeamsRow(numberOfElements){
 		array10 = retrieve('variant' + x.toString());
 		let z = 0;
 		let y = array10.length - 2;
-		while (y > 0){
-      	  	outputHTML += '<tr>';
-      	 	outputHTML += '<td>' + array10[array10.length - 1][22] + '</td>' + '<td>' + array10[y][1] + '</td>' + '<td>' + array10[y][2] + '</td>';    
-      	  	z = 0;
-       	 	while (z < numberOfElements){
-	    	    outputHTML += '<td>' + array10[y][24 + z] + " " + '</td>';
-         		z++;
-       	 	}
-       	 	outputHTML += '</tr>';
-       	 	y--;
-    	}
+      	outputHTML += '<tr>';
+      	outputHTML += '<td>' + array10[array10.length - 1][22] + '</td>' + '<td>' + array10[array10.length - 1][32] + '</td>' + '<td>' + array10[array10.length - 1][30] + '</td>' + '<td>' + array10[array10.length - 1][31] + '</td>';    
+      	z = 0;
+    	while (z < numberOfElements){
+	        outputHTML += '<td>' + array10[array10.length - 1][33 + z] + " " + '</td>';
+       		z++;
+  	 	}
+   	 	outputHTML += '</tr>';
+   	 	y--;
 	}
     return outputHTML;
 }
