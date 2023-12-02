@@ -253,6 +253,40 @@ function teamTables(variantToDisplay){
 	document.getElementById("buttonTemplate").insertAdjacentHTML("afterend", outputHTML);
 }
 
+function playerFeaturedFHMStats(player){
+	outputHTML = '';
+	outputHTML += '<tbody>';
+	outputHTML += '<tr>';
+	outputHTML += '<th>' + player[0][0] + '</th>' + "<th>" + player[0][1] + '</th>';
+    outputHTML += '</tr>';
+	outputHTML += '<tr>';
+	outputHTML += '<th>GP</th>' + '<th>Goals</th>' + '<th>Assists</th>';
+	outputHTML += '</tr>';
+	outputHTML += "<tr>";
+	outputHTML += "<td>" + player[0][2] + "</td>" +"<td>" + player[0][3] + "</td>" + "<td>" + player[0][4] + "</td>";
+	outputHTML += "</tr>";
+	outputHTML += '<tr>';
+	outputHTML += '<th>+/-</th>' + '<th>PIM</th>' + '<th>Hits</th>';
+	outputHTML += '</tr>';
+	outputHTML += "<tr>";
+	outputHTML += "<td>" + player[0][5] + "</td>" +"<td>" + player[0][6] + "</td>" + "<td>" + player[0][7] + "</td>";
+	outputHTML += "</tr>";
+    outputHTML += "<tr>";
+	outputHTML += '<th>GvA</th>' + '<th>TkA</th>' + '<th>SB</th>';
+	outputHTML += '</tr>';
+	outputHTML += "<tr>";
+	outputHTML += "<td>" + player[0][8] + "</td>" + "<td>" + player[0][9] + "</td>" + "<td>" + player[0][10] + "</td>";
+	outputHTML += "</tr>";
+	outputHTML += "<tr>";
+	outputHTML += '<th>G/60</th>' + '<th>GA/60</th>' + '<th>FO%</th>';
+	outputHTML += '</tr>';
+	outputHTML += "<tr>";
+	outputHTML += "<td>" + player[0][11] + "</td>" + "<td>" + player[0][12] + "</td>" + "<td>" + player[0][13] + "</td>";
+	outputHTML += "</tr>";
+	outputHTML += '</tbody>';
+	document.getElementById("featuredPlayerFHM").innerHTML = outputHTML;
+}
+
 function teamLines(){
     array10 = retrieve(localStorage['team']); 
     outputHTML = '';
@@ -351,6 +385,25 @@ function displayTeams(){
     outputHTML += '</table';
 	document.getElementById("thattwo").insertAdjacentHTML("afterbegin", outputHTML);
 }
+function featuredPlayer(){
+	let array5 = [];
+	let array10 = [];
+	let array2 = [];
+	for (let a = 1; a < parseInt(localStorage['counter']); a++){
+		array10 = retrieve('variant' + a.toString());
+		let y = array10.length - 2;
+		while (y > 0){
+			array5.push([array10[y][1], array10[y][2], array10[y][66], array10[y][67], array10[y][68], array10[y][69], array10[y][70], array10[y][77], array10[y][78], array10[y][79], array10[y][80], array10[y][89], array10[y][90], array10[y][141]]);
+			y--;
+		}
+	}
+	
+	const sorted = array5.sort((a, b) => a[2] - b[2]);
+	sorted.reverse();
+	playerFeaturedFHMStats(sorted)
+	console.log(sorted);
+}
+
 function displayTeamsRow(numberOfElements){
 	outputHTML = '';
 	for(let x = localStorage['counter'] - 1; x > 0; x--){
@@ -406,4 +459,7 @@ function sortTable(){
 		switching = true;
 		}
 	}
+}
+function compareNumbers(a, b) {
+	return a - b;
 }

@@ -9,6 +9,10 @@
 <body>
 	<div id = "thatone">
 		<div id = "thattwo">
+			<table id = "featuredPlayerFHM">
+			</table>
+			<img src = 'https://assets.nhle.com/mugs/nhl/latest/8450900.png' id = 'headshotFHM'>
+			<img src = 'https://assets.nhle.com/logos/nhl/svg/STL_dark.svg' id = 'teamCrestFHM'>
 			<table id = "table1">
 			</table>	
 			<div id = "thatthree">
@@ -21,6 +25,8 @@
     <script>
 	    playerStatsTable();
         sortTable();
+		featuredPlayer();
+		getHeadshot()
     </script>
 	<style>
 		#table1{
@@ -30,6 +36,27 @@
 			width: 100%;
 			min-width: 100%;
 			background-color: black;
+		}
+		#headshotFHM{
+			position: relative;
+			width: 25%;
+		}
+		#teamCrestFHM{
+			position:relative;
+			width: 25%;
+		}
+		#headshotNHL{
+			position:relative;
+			width: 25%;
+		}
+		#teamCrestNHL{
+			position:relative;
+			width: 25%;
+		}
+		#featuredPlayerFHM{
+			position: relative;
+			width: 50%;
+			height: 50%;
 		}
 	</style>
 </body>
