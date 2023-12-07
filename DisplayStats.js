@@ -257,31 +257,31 @@ function playerFeaturedFHMStats(player){
 	outputHTML = '';
 	outputHTML += '<tbody>';
 	outputHTML += '<tr>';
-	outputHTML += '<th>' + player[0][0] + '</th>' + "<th>" + player[0][1] + '</th>';
+	outputHTML += '<th>' + player[0] + '</th>' + "<th>" + player[1] + '</th>';
     outputHTML += '</tr>';
 	outputHTML += '<tr>';
 	outputHTML += '<th>GP</th>' + '<th>Goals</th>' + '<th>Assists</th>';
 	outputHTML += '</tr>';
 	outputHTML += "<tr>";
-	outputHTML += "<td>" + player[0][2] + "</td>" +"<td>" + player[0][3] + "</td>" + "<td>" + player[0][4] + "</td>";
+	outputHTML += "<td>" + player[2] + "</td>" +"<td>" + player[3] + "</td>" + "<td>" + player[4] + "</td>";
 	outputHTML += "</tr>";
 	outputHTML += '<tr>';
 	outputHTML += '<th>+/-</th>' + '<th>PIM</th>' + '<th>Hits</th>';
 	outputHTML += '</tr>';
 	outputHTML += "<tr>";
-	outputHTML += "<td>" + player[0][5] + "</td>" +"<td>" + player[0][6] + "</td>" + "<td>" + player[0][7] + "</td>";
+	outputHTML += "<td>" + player[5] + "</td>" +"<td>" + player[6] + "</td>" + "<td>" + player[7] + "</td>";
 	outputHTML += "</tr>";
     outputHTML += "<tr>";
 	outputHTML += '<th>GvA</th>' + '<th>TkA</th>' + '<th>SB</th>';
 	outputHTML += '</tr>';
 	outputHTML += "<tr>";
-	outputHTML += "<td>" + player[0][8] + "</td>" + "<td>" + player[0][9] + "</td>" + "<td>" + player[0][10] + "</td>";
+	outputHTML += "<td>" + player[8] + "</td>" + "<td>" + player[9] + "</td>" + "<td>" + player[10] + "</td>";
 	outputHTML += "</tr>";
 	outputHTML += "<tr>";
 	outputHTML += '<th>G/60</th>' + '<th>GA/60</th>' + '<th>FO%</th>';
 	outputHTML += '</tr>';
 	outputHTML += "<tr>";
-	outputHTML += "<td>" + player[0][11] + "</td>" + "<td>" + player[0][12] + "</td>" + "<td>" + player[0][13] + "</td>";
+	outputHTML += "<td>" + player[11] + "</td>" + "<td>" + player[12] + "</td>" + "<td>" + player[13] + "</td>";
 	outputHTML += "</tr>";
 	outputHTML += '</tbody>';
 	document.getElementById("featuredPlayerFHM").innerHTML = outputHTML;
@@ -385,29 +385,55 @@ function displayTeams(){
     outputHTML += '</table';
 	document.getElementById("thattwo").insertAdjacentHTML("afterbegin", outputHTML);
 }
+
 function featuredPlayer(){
 	let array5 = [];
-	let array10 = [];
-	let array2 = [];
+	let array7 = [];
 	for (let a = 1; a < parseInt(localStorage['counter']); a++){
-		array10 = retrieve('variant' + a.toString());
-		let y = array10.length - 2;
+		array7 = retrieve('variant' + a.toString());
+		let y = array7.length - 2;
 		while (y > 0){
-			array5.push([array10[y][1], array10[y][2], array10[y][66], array10[y][67], array10[y][68], array10[y][69], array10[y][70], array10[y][77], array10[y][78], array10[y][79], array10[y][80], array10[y][89], array10[y][90], array10[y][141]]);
+			array5.push([array7[y][1], array7[y][2], array7[y][66], array7[y][67], array7[y][68], array7[y][69], array7[y][70], array7[y][77], array7[y][78], array7[y][79], array7[y][80], array7[y][89], array7[y][90], array7[y][141], array7[array7.length -1][23]]);
 			y--;
 		}
 	}
 	
-	const sorted = array5.sort((a, b) => a[2] - b[2]);
-	sorted.reverse();
-	playerFeaturedFHMStats(sorted)
-	console.log(sorted);
+	console.log(array5);
+	let sorted = array5.sort((a, b) => a[3] - b[3]);
+	sorted = sorted.reverse();
+	ranNum = Math.floor(Math.random() * 10);
+	playerFeaturedFHMStats(sorted[ranNum]);
+	console.log(sorted[ranNum]);
+	return [sorted[ranNum][0].toLowerCase() + "-" + sorted[ranNum][1].toLowerCase(), sorted[ranNum][14]]
+}
+
+function featuredPlayerNHLStats(){
+	let players = featuredPlayer();
+	let url;
+	console.log(players[0]);
+	fetch('playerIds/' + players[0] +'.json')
+		.then(response => {
+			if (response.status == 404){
+				document.getElementById('headshotBlock').innerHTML = "<img src = 'https://assets.nhle.com/mugs/nhl/latest/' id = 'headshotFHM'>";
+			}
+			else{
+				return response.text();
+			}
+		})
+		.then(data => {
+			console.log(data.slice(-8, -1));
+			url = 'https://assets.nhle.com/mugs/nhl/latest/' + data.slice(-8, -1).toString() + '.png';
+			document.getElementById('headshotBlock').innerHTML = "<img src = " + url + " id = 'headshotFHM'>";
+		});
+
+	url = 'https://assets.nhle.com/logos/nhl/svg/' + players[1] + '_dark.svg';
+	document.getElementById('teamCrestBlock').innerHTML = "<img src = " + url + " id = 'teamCrestFHM'>";
 }
 
 function displayTeamsRow(numberOfElements){
 	outputHTML = '';
 	for(let x = localStorage['counter'] - 1; x > 0; x--){
-		array10 = retrieve('variant' + x.toString());
+		let array10 = retrieve('variant' + x.toString());
 		let z = 0;
 		let y = array10.length - 2;
       	outputHTML += '<tr>';
