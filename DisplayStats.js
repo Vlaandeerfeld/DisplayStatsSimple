@@ -61,10 +61,6 @@ async function uploadTemplate(){
 		try{
 		data3 = await fetch('csvsToUpload/' + array4[k],  {
             method: 'get',
-            headers: {
-                'content-type': 'text/csv;charset=UTF-8',
-                //'Authorization': //in case you need authorisation
-            }
         });
 	}
 	catch(e){
@@ -114,14 +110,14 @@ function checkAndUpload(fileInput){
 		array3[headers[k]] = rows[k];
 	}
 		
-	if (localStorage["counter"] == undefined){		
-		localStorage.setItem("counter", 1);
+	if (localStorage['counter'] == undefined){		
+		localStorage.setItem('counter', 1);
 	}
 		
-	for (let p = 1;  p <= parseInt(localStorage["counter"]); p++){
+	for (let p = 1;  p <= parseInt(localStorage['counter']); p++){
 		console.log(localStorage['counter']);
-		console.log(JSON.stringify(localStorage["variant" + p.toString()]) == JSON.stringify(rows.toString()));
-		if (JSON.stringify(localStorage["variant" + p.toString()]) == JSON.stringify(rows.toString()) && p >= 1){
+		console.log(JSON.stringify(localStorage['variant' + p.toString()]) == JSON.stringify(rows.toString()));
+		if (JSON.stringify(localStorage['variant' + p.toString()]) == JSON.stringify(rows.toString()) && p >= 1){
 			arrayBreak.push(true);
 		}
 		else{
@@ -140,13 +136,13 @@ function checkAndUpload(fileInput){
 	}
 	if (continueThrough == true){
 		
-		localStorage.setItem("variant" + localStorage["counter"], `${array3["TeamId"]}`);
+		localStorage.setItem('variant' + localStorage['counter'], `${array3['TeamId']}`);
 		for (let q in array3){
 			if (q != "TeamId"){
-				localStorage.setItem("variant" + localStorage["counter"], [localStorage["variant" + localStorage["counter"]], `${array3[q]}`]);
+				localStorage.setItem('variant' + localStorage['counter'], [localStorage['variant' + localStorage['counter']], `${array3[q]}`]);
 			}
 		}
-		localStorage.setItem("counter", parseInt(localStorage["counter"]) + 1);
+		localStorage.setItem('counter', parseInt(localStorage['counter']) + 1);
 	}
 
 	FileReader.abort
@@ -216,41 +212,41 @@ function teamTables(variantToDisplay){
 	outputHTML = '';
 	array10 = retrieve(variantToDisplay);
 
-	outputHTML += "<button type = 'button' id = 'hotmail' onclick = \"setTeam('" + variantToDisplay + "');document.location='variant1.html';\">";
+	outputHTML += "<button type = 'button' id = 'gotoVariant' onclick = \"setTeam('" + variantToDisplay + "');document.location='variant1.html';\">";
 	outputHTML += "<table id = 'displayWebsite'>";
 	outputHTML += '<tbody>';
 	outputHTML += '<tr>';
-	outputHTML += '<th>' + array10[array10.length - 1][21] + '</th>' + "<th>" + array10[array10.length - 1][22] + '</th>' + "<th><button type = 'button' id = 'teamPage' onclick = \"setTeam('" + variantToDisplay + "');document.location='variant1.html';\"></button></th>";
+	outputHTML += '<th>' + array10[array10.length - 1][21] + '</th>' + '<th>' + array10[array10.length - 1][22] + '</th>' + "<th><button type = 'button' id = 'teamPage' onclick = \"setTeam('" + variantToDisplay + "');document.location='variant1.html';\"></button></th>";
     outputHTML += '</tr>';
 	outputHTML += '<tr>';
 	outputHTML += '<th>Wins</th>' + '<th>Losses</th>' + '<th>OTL</th>';
 	outputHTML += '</tr>';
-	outputHTML += "<tr>";
-	outputHTML += "<td>" + array10[array10.length - 1][24] + "</td>" +"<td>" + array10[array10.length - 1][25] + "</td>" + "<td>" + array10[array10.length - 1][27] + "</td>";
-	outputHTML += "</tr>";
+	outputHTML += '<tr>';
+	outputHTML += '<td>' + array10[array10.length - 1][24] + '</td>' + '<td>' + array10[array10.length - 1][25] + '</td>' + '<td>' + array10[array10.length - 1][27] + '</td>';
+	outputHTML += '</tr>';
 	outputHTML += '<tr>';
 	outputHTML += '<th>GP</th>' + '<th>Points</th>' + '<th>PCT</th>';
 	outputHTML += '</tr>';
-	outputHTML += "<tr>";
-	outputHTML += "<td>" + array10[array10.length - 1][32] + "</td>" +"<td>" + array10[array10.length - 1][30] + "</td>" + "<td>" + array10[array10.length - 1][31] + "</td>";
-	outputHTML += "</tr>";
-    outputHTML += "<tr>";
+	outputHTML += '<tr>';
+	outputHTML += '<td>' + array10[array10.length - 1][32] + '</td>' + '<td>' + array10[array10.length - 1][30] + '</td>' + '<td>' + array10[array10.length - 1][31] + '</td>';
+	outputHTML += '</tr>';
+    outputHTML += '<tr>';
 	outputHTML += '<th>ESG</th>' + '<th>PPG</th>' + '<th>SHG</th>';
 	outputHTML += '</tr>';
-	outputHTML += "<tr>";
-	outputHTML += "<td>" + (parseInt(array10[array10.length - 1][33]) - parseInt(array10[array10.length - 1][45]) - parseInt(array10[array10.length - 1][49])) + "</td>" + "<td>" + array10[array10.length - 1][45] + "</td>" + "<td>" + array10[array10.length - 1][49] + "</td>";
-	outputHTML += "</tr>";
-	outputHTML += "<tr>";
+	outputHTML += '<tr>';
+	outputHTML += '<td>' + (parseInt(array10[array10.length - 1][33]) - parseInt(array10[array10.length - 1][45]) - parseInt(array10[array10.length - 1][49])) + '</td>' + '<td>' + array10[array10.length - 1][45] + '</td>' + '<td>' + array10[array10.length - 1][49] + '</td>';
+	outputHTML += '</tr>';
+	outputHTML += '<tr>';
 	outputHTML += '<th>ESG/Game</th>' + '<th>PPG/Game</th>' + '<th>SHG/Game</th>';
 	outputHTML += '</tr>';
 	outputHTML += "<tr>";
 	outputHTML += "<td>" + (((parseInt(array10[array10.length - 1][33]) - parseInt(array10[array10.length - 1][45])) - parseInt(array10[array10.length - 1][49])) / parseInt(array10[array10.length - 1][32])).toFixed(2) + "</td>" + "<td>" + (parseInt(array10[array10.length - 1][45]) / parseInt(array10[array10.length - 1][32])).toFixed(2) + "</td>" + "<td>" + (parseInt(array10[array10.length - 1][49]) / array10[array10.length - 1][32]).toFixed(2) + "</td>";
-	outputHTML += "</tr>";
+	outputHTML += '</tr>';
 	outputHTML += '</tbody>';
 	outputHTML += '</table>';
 	outputHTML += '</button>';
 
-	document.getElementById("buttonTemplate").insertAdjacentHTML("afterend", outputHTML);
+	document.getElementById('buttonTemplate').insertAdjacentHTML('afterend', outputHTML);
 }
 
 function playerFeaturedFHMStats(player){
@@ -262,69 +258,103 @@ function playerFeaturedFHMStats(player){
 	outputHTML += '<tr>';
 	outputHTML += '<th>GP</th>' + '<th>Goals</th>' + '<th>Assists</th>';
 	outputHTML += '</tr>';
-	outputHTML += "<tr>";
-	outputHTML += "<td>" + player[2] + "</td>" +"<td>" + player[3] + "</td>" + "<td>" + player[4] + "</td>";
-	outputHTML += "</tr>";
 	outputHTML += '<tr>';
-	outputHTML += '<th>+/-</th>' + '<th>PIM</th>' + '<th>Hits</th>';
+	outputHTML += '<td>' + player[2] + '</td>' + '<td>' + player[3] + '</td>' + '<td>' + player[4] + '</td>';
 	outputHTML += '</tr>';
-	outputHTML += "<tr>";
-	outputHTML += "<td>" + player[5] + "</td>" +"<td>" + player[6] + "</td>" + "<td>" + player[7] + "</td>";
-	outputHTML += "</tr>";
-    outputHTML += "<tr>";
-	outputHTML += '<th>GvA</th>' + '<th>TkA</th>' + '<th>SB</th>';
+	outputHTML += '<tr>';
+	outputHTML += '<th>+/-</th>' + '<th>PIM</th>' + '<th>Shots</th>';
 	outputHTML += '</tr>';
-	outputHTML += "<tr>";
-	outputHTML += "<td>" + player[8] + "</td>" + "<td>" + player[9] + "</td>" + "<td>" + player[10] + "</td>";
-	outputHTML += "</tr>";
-	outputHTML += "<tr>";
-	outputHTML += '<th>G/60</th>' + '<th>GA/60</th>' + '<th>FO%</th>';
+	outputHTML += '<tr>';
+	outputHTML += '<td>' + player[5] + '</td>' + '<td>' + player[6] + '</td>' + '<td>' + player[7] + '</td>';
 	outputHTML += '</tr>';
-	outputHTML += "<tr>";
-	outputHTML += "<td>" + player[11] + "</td>" + "<td>" + player[12] + "</td>" + "<td>" + player[13] + "</td>";
-	outputHTML += "</tr>";
+    outputHTML += '<tr>';
+	outputHTML += '<th>PPG</th>' + '<th>SHG</th>' + '<th>Points</th>';
+	outputHTML += '</tr>';
+	outputHTML += '<tr>';
+	outputHTML += '<td>' + player[8] + '</td>' + '<td>' + player[9] + '</td>' + '<td>' + (parseInt(player[3]) + parseInt(player[4])) + '</td>';
+	outputHTML += '</tr>';
+	outputHTML += '<tr>';
+	outputHTML += '<th>G/Game</th>' + '<th>Asissts/Game</th>' + '<th>Points/Game</th>';
+	outputHTML += '</tr>';
+	outputHTML += '<tr>';
+	outputHTML += '<td>' + parseInt(player[3]) / parseInt(player[2]) + '</td>' + '<td>' + parseInt(player[4]) / parseInt(player[2]) + '</td>' + '<td>' + (parseInt(player[4]) + parseInt(player[3])) / parseInt(player[2]) + '</td>';
+	outputHTML += '</tr>';
 	outputHTML += '</tbody>';
-	document.getElementById("featuredPlayerFHM").innerHTML = outputHTML;
+	document.getElementById('featuredPlayerFHM').innerHTML = outputHTML;
+}
+
+function playerFeaturedNHLStats(player){
+	outputHTML = '';
+	outputHTML += '<tbody>';
+	outputHTML += '<tr>';
+	outputHTML += '<th>' + player[11] + '</th>' + '<th>' + player[0] + '</th>' + "<th>" + player[1] + '</th>';
+    outputHTML += '</tr>';
+	outputHTML += '<tr>';
+	outputHTML += '<th>GP</th>' + '<th>Goals</th>' + '<th>Assists</th>';
+	outputHTML += '</tr>';
+	outputHTML += '<tr>';
+	outputHTML += '<td>' + player[2] + '</td>' + '<td>' + player[3] + '</td>' + '<td>' + player[4] + '</td>';
+	outputHTML += '</tr>';
+	outputHTML += '<tr>';
+	outputHTML += '<th>+/-</th>' + '<th>PIM</th>' + '<th>Shots</th>';
+	outputHTML += '</tr>';
+	outputHTML += '<tr>';
+	outputHTML += '<td>' + player[5] + '</td>' + '<td>' + player[6] + '</td>' + '<td>' + player[7] + '</td>';
+	outputHTML += '</tr>';
+    outputHTML += '<tr>';
+	outputHTML += '<th>PPG</th>' + '<th>SHG</th>' + '<th>Points</th>';
+	outputHTML += '</tr>';
+	outputHTML += '<tr>';
+	outputHTML += '<td>' + player[8] + '</td>' + '<td>' + player[9] + '</td>' + '<td>' + player[10] + '</td>';
+	outputHTML += '</tr>';
+	outputHTML += '<tr>';
+	outputHTML += '<th>G/Game</th>' + '<th>Assists/Game</th>' + '<th>Points/Game</th>';
+	outputHTML += '</tr>';
+	outputHTML += '<tr>';
+	outputHTML += '<td>' + player[3] / player[2] + '</td>' + '<td>' + player[4] / player[2] + '</td>' + '<td>' + player[10] / player[2] + '</td>';
+	outputHTML += '</tr>';
+	outputHTML += '</tbody>';
+	document.getElementById('featuredPlayerNHL').innerHTML = outputHTML;
 }
 
 function teamLines(){
     array10 = retrieve(localStorage['team']); 
     outputHTML = '';
 	outputHTML += '<tr>';
-	outputHTML += '<th>' + array10[array10.length - 1][21] + '</th>' + "<th>" + array10[array10.length - 1][22] + '</th>' + "<th>Team Lines</th>";
+	outputHTML += '<th>' + array10[array10.length - 1][21] + '</th>' + '<th>' + array10[array10.length - 1][22] + '</th>' + '<th>Team Lines</th>';
 	outputHTML += '<tr>';
 	outputHTML += '<th>LW</th>' + '<th>C</th>' + '<th>RW</th>';
 	outputHTML += '</tr>';
-	outputHTML += "<tr>";
-	outputHTML += "<td>" + array10[array10.length - 1][1] + "</td>" +"<td>" + array10[array10.length - 1][2] + "</td>" + "<td>" + array10[array10.length - 1][3] + "</td>";
-	outputHTML += "</tr>";
-	outputHTML += "<tr>";
-	outputHTML += "<td>" + array10[array10.length - 1][6] + "</td>" +"<td>" + array10[array10.length - 1][7] + "</td>" + "<td>" + array10[array10.length - 1][8] + "</td>";
-    outputHTML += "</tr>"
-    outputHTML += "<tr>";
-	outputHTML += "<td>" + array10[array10.length - 1][11] + "</td>" + "<td>" + array10[array10.length - 1][12] + "</td>" + "<td>" + array10[array10.length - 1][13] + "</td>";
-	outputHTML += "</tr>";
-	outputHTML += "<tr>";
-	outputHTML += "<td>" + array10[array10.length - 1][16] + "</td>" + "<td>" + array10[array10.length - 1][17] + "</td>" + "<td>" + array10[array10.length - 1][18] + "</td>";
-	outputHTML += "</tr>";
-	outputHTML += "<tr>";
-	outputHTML += "<th>LD</th>" + "<th>RD</th>";
-	outputHTML += "</tr>";
-	outputHTML += "<tr>";
-	outputHTML += "<td>" + array10[array10.length - 1][4] + "</td>" + "<td>" + array10[array10.length - 1][5] + "</td>";
-	outputHTML += "</tr>";
-	outputHTML += "<tr>";
-	outputHTML += "<td>" + array10[array10.length - 1][9] + "</td>" + "<td>" + array10[array10.length - 1][10] + "</td>";
-	outputHTML += "</tr>";
-	outputHTML += "<tr>";
-	outputHTML += "<td>" + array10[array10.length - 1][14] + "</td>" + "<td>" + array10[array10.length - 1][15] + "</td>";
-	outputHTML += "</tr>";
-	outputHTML += "<tr>";
-	outputHTML += "<th>Starting Goalie</th>" + "<th>Backup Goalie</th>";
-	outputHTML += "</tr>";
-	outputHTML += "<tr>";
-	outputHTML += "<td>" + array10[array10.length - 1][19] + "</td>" + "<td>" + array10[array10.length - 1][20] + "</td>";
-	outputHTML += "</tr>"; 
+	outputHTML += '<tr>';
+	outputHTML += '<td>' + array10[array10.length - 1][1] + '</td>' + '<td>' + array10[array10.length - 1][2] + '</td>' + '<td>' + array10[array10.length - 1][3] + '</td>';
+	outputHTML += '</tr>';
+	outputHTML += '<tr>';
+	outputHTML += '<td>' + array10[array10.length - 1][6] + '</td>' + '<td>' + array10[array10.length - 1][7] + '</td>' + '<td>' + array10[array10.length - 1][8] + '</td>';
+    outputHTML += '</tr>'
+    outputHTML += '<tr>';
+	outputHTML += '<td>' + array10[array10.length - 1][11] + '</td>' + '<td>' + array10[array10.length - 1][12] + '</td>' + '<td>' + array10[array10.length - 1][13] + '</td>';
+	outputHTML += '</tr>';
+	outputHTML += '<tr>';
+	outputHTML += '<td>' + array10[array10.length - 1][16] + '</td>' + '<td>' + array10[array10.length - 1][17] + '</td>' + '<td>' + array10[array10.length - 1][18] + '</td>';
+	outputHTML += '</tr>';
+	outputHTML += '<tr>';
+	outputHTML += '<th>LD</th>' + '<th>RD</th>';
+	outputHTML += '</tr>';
+	outputHTML += '<tr>';
+	outputHTML += '<td>' + array10[array10.length - 1][4] + '</td>' + '<td>' + array10[array10.length - 1][5] + '</td>';
+	outputHTML += '</tr>';
+	outputHTML += '<tr>';
+	outputHTML += '<td>' + array10[array10.length - 1][9] + '</td>' + '<td>' + array10[array10.length - 1][10] + '</td>';
+	outputHTML += '</tr>';
+	outputHTML += '<tr>';
+	outputHTML += '<td>' + array10[array10.length - 1][14] + '</td>' + '<td>' + array10[array10.length - 1][15] + '</td>';
+	outputHTML += '</tr>';
+	outputHTML += '<tr>';
+	outputHTML += '<th>Starting Goalie</th>' + '<th>Backup Goalie</th>';
+	outputHTML += '</tr>';
+	outputHTML += '<tr>';
+	outputHTML += '<td>' + array10[array10.length - 1][19] + '</td>' + '<td>' + array10[array10.length - 1][20] + '</td>';
+	outputHTML += '</tr>'; 
     document.getElementById('table1').innerHTML = outputHTML;
 }
 function teamStatsRow(numberOfElements){
@@ -337,7 +367,7 @@ function teamStatsRow(numberOfElements){
         outputHTML += '<td>' + array10[y][1] + '</td>' + '<td>' + array10[y][2] + '</td>';    
         x = 0;
         while (x < numberOfElements){
-	        outputHTML += '<td>' + array10[y][66 + x] + " " + '</td>';
+	        outputHTML += '<td>' + array10[y][66 + x] + ' ' + '</td>';
             x++;
         }
         outputHTML += '</tr>';
@@ -383,7 +413,7 @@ function displayTeams(){
     outputHTML += '<th>Name</th><th>GP</th><th>Points</th><th>PCT</th><th>G</th><th>GA</th><th>S</th><th>SA</th><th>FO%</th><th>SB</th><th>Hits</th><th>Takeaways</th><th>Giveaways</th><th>InD</th><th>PIM/G</th><th>PPG</th><th>SHGA</th><th>SH Chances</th><th>PPGA</th><th>SH Chances</th><th>SHG</th>';
 	outputHTML += displayTeamsRow(17);
     outputHTML += '</table';
-	document.getElementById("thattwo").insertAdjacentHTML("afterbegin", outputHTML);
+	document.getElementById('thattwo').insertAdjacentHTML('afterbegin', outputHTML);
 }
 
 function featuredPlayer(){
@@ -393,7 +423,7 @@ function featuredPlayer(){
 		array7 = retrieve('variant' + a.toString());
 		let y = array7.length - 2;
 		while (y > 0){
-			array5.push([array7[y][1], array7[y][2], array7[y][66], array7[y][67], array7[y][68], array7[y][69], array7[y][70], array7[y][77], array7[y][78], array7[y][79], array7[y][80], array7[y][89], array7[y][90], array7[y][141], array7[array7.length -1][23]]);
+			array5.push([array7[y][1], array7[y][2], array7[y][66], array7[y][67], array7[y][68], array7[y][69], array7[y][70], array7[y][84], array7[y][71], array7[y][73], array7[y][80], array7[y][89], array7[y][90], array7[y][141], array7[array7.length -1][23]]);
 			y--;
 		}
 	}
@@ -404,12 +434,13 @@ function featuredPlayer(){
 	ranNum = Math.floor(Math.random() * 10);
 	playerFeaturedFHMStats(sorted[ranNum]);
 	console.log(sorted[ranNum]);
-	return [sorted[ranNum][0].toLowerCase() + "-" + sorted[ranNum][1].toLowerCase(), sorted[ranNum][14]]
+	return [sorted[ranNum][0].toLowerCase() + '-' + sorted[ranNum][1].toLowerCase(), sorted[ranNum][14]]
 }
 
 function featuredPlayerNHLStats(){
 	let players = featuredPlayer();
 	let url;
+	let array8 = [];
 	console.log(players[0]);
 	fetch('playerIds/' + players[0] +'.json')
 		.then(response => {
@@ -421,13 +452,24 @@ function featuredPlayerNHLStats(){
 			}
 		})
 		.then(data => {
-			console.log(data.slice(-8, -1));
-			url = 'https://assets.nhle.com/mugs/nhl/latest/' + data.slice(-8, -1).toString() + '.png';
-			document.getElementById('headshotBlock').innerHTML = "<img src = " + url + " id = 'headshotFHM'>";
+			result = data.slice(0, data.indexOf('{')).split('-');
+			result1 = data.slice(0, data.indexOf('}')).split(`:`);
+			if (result[2].indexOf(`"`) == -1){
+				url = 'https://assets.nhle.com/mugs/nhl/latest/' + result[2].toString() + '.png';
+			}
+			else{
+				url = 'https://assets.nhle.com/mugs/nhl/latest/' + result[2].slice(0, result.indexOf(`"`) - 1).toString() + '.png';
+				array8.push([result[0].slice(1, 2).toUpperCase() + result[0].slice(2), result[1].slice(0, 1).toUpperCase() + result[1].slice(1), result1[4].slice(0, result1[4].indexOf(',')), result1[5].slice(0, result1[5].indexOf(',')), result1[6].slice(0, result1[6].indexOf(',')), result1[8].slice(0, result1[8].indexOf(',')), result1[9].slice(0, result1[9].indexOf(',')), result1[12].slice(0, result1[12].indexOf(',')), result1[14].slice(0, result1[14].indexOf(',')), result1[16].slice(0, result1[16].indexOf(',')), result1[7].slice(0, result1[7].indexOf(',')), result1[1].slice(0, result1[1].indexOf(','))]);
+				console.log(result1);
+				playerFeaturedNHLStats(array8[0]);
+			}
+				document.getElementById('headshotBlock').innerHTML = '<img src = ' + url + " id = 'headshotFHM'>";
+				document.getElementById('headshotBlock1').innerHTML = '<img src = ' + url + " id = 'headshotFHM1'>";
 		});
 
 	url = 'https://assets.nhle.com/logos/nhl/svg/' + players[1] + '_dark.svg';
-	document.getElementById('teamCrestBlock').innerHTML = "<img src = " + url + " id = 'teamCrestFHM'>";
+	document.getElementById('teamCrestBlock').innerHTML = '<img src = ' + url + " id = 'teamCrestFHM'>";
+	document.getElementById('teamCrestBlock1').innerHTML = '<img src = ' + url + " id = 'teamCrestFHM1'>";
 }
 
 function displayTeamsRow(numberOfElements){
@@ -440,7 +482,7 @@ function displayTeamsRow(numberOfElements){
       	outputHTML += '<td>' + array10[array10.length - 1][22] + '</td>' + '<td>' + array10[array10.length - 1][32] + '</td>' + '<td>' + array10[array10.length - 1][30] + '</td>' + '<td>' + array10[array10.length - 1][31] + '</td>';    
       	z = 0;
     	while (z < numberOfElements){
-	        outputHTML += '<td>' + array10[array10.length - 1][33 + z] + " " + '</td>';
+	        outputHTML += '<td>' + array10[array10.length - 1][33 + z] + ' ' + '</td>';
        		z++;
   	 	}
    	 	outputHTML += '</tr>';
@@ -453,7 +495,7 @@ function setTeam(teamToSet){
 }
 function sortTable(){
 	var table, rows, switching, i, x, y, shouldSwitch;
-	table = document.getElementById("table1");
+	table = document.getElementById('table1');
 	table = table.firstChild;
 	switching = true;
 	/* Make a loop that will continue until
@@ -469,8 +511,8 @@ function sortTable(){
 		shouldSwitch = false;
 		/* Get the two elements you want to compare,
 		one from current row and one from the next: */
-		x = rows[i].getElementsByTagName("TD")[4];
-		y = rows[i + 1].getElementsByTagName("TD")[4];
+		x = rows[i].getElementsByTagName('TD')[4];
+		y = rows[i + 1].getElementsByTagName('TD')[4];
 		// Check if the two rows should switch place:
 		if (x.innerHTML - y.innerHTML < 0) {
 		  // If so, mark as a switch and break the loop:
@@ -486,6 +528,7 @@ function sortTable(){
 		}
 	}
 }
+
 function compareNumbers(a, b) {
 	return a - b;
 }
