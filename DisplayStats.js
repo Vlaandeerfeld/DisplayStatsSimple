@@ -413,7 +413,7 @@ function displayTeams(){
     outputHTML += '<th>Name</th><th>GP</th><th>Points</th><th>PCT</th><th>G</th><th>GA</th><th>S</th><th>SA</th><th>FO%</th><th>SB</th><th>Hits</th><th>Takeaways</th><th>Giveaways</th><th>InD</th><th>PIM/G</th><th>PPG</th><th>SHGA</th><th>SH Chances</th><th>PPGA</th><th>SH Chances</th><th>SHG</th>';
 	outputHTML += displayTeamsRow(17);
     outputHTML += '</table';
-	document.getElementById('thattwo').insertAdjacentHTML('afterbegin', outputHTML);
+	document.getElementById('outermostLayer').insertAdjacentHTML('afterbegin', outputHTML);
 }
 
 function featuredPlayer(){
