@@ -277,7 +277,7 @@ function playerFeaturedFHMStats(player){
 	outputHTML += '<th>G/Game</th>' + '<th>Asissts/Game</th>' + '<th>Points/Game</th>';
 	outputHTML += '</tr>';
 	outputHTML += '<tr>';
-	outputHTML += '<td>' + parseInt(player[3]) / parseInt(player[2]) + '</td>' + '<td>' + parseInt(player[4]) / parseInt(player[2]) + '</td>' + '<td>' + (parseInt(player[4]) + parseInt(player[3])) / parseInt(player[2]) + '</td>';
+	outputHTML += '<td>' + Math.floor(((player[3] / player[2]) * 100)) / 100 + '</td>' + '<td>' + Math.floor(((player[4] / player[2]) * 100)) / 100 + '</td>' + '<td>' + Math.floor(((player[10] / player[2]) * 100)) / 100 + '</td>';
 	outputHTML += '</tr>';
 	outputHTML += '</tbody>';
 	document.getElementById('featuredPlayerFHM').innerHTML = outputHTML;
@@ -312,7 +312,7 @@ function playerFeaturedNHLStats(player){
 	outputHTML += '<th>G/Game</th>' + '<th>Assists/Game</th>' + '<th>Points/Game</th>';
 	outputHTML += '</tr>';
 	outputHTML += '<tr>';
-	outputHTML += '<td>' + player[3] / player[2] + '</td>' + '<td>' + player[4] / player[2] + '</td>' + '<td>' + player[10] / player[2] + '</td>';
+	outputHTML += '<td>' + Math.floor(((player[3] / player[2]) * 100)) / 100 + '</td>' + '<td>' + Math.floor(((player[4] / player[2]) * 100)) / 100 + '</td>' + '<td>' + Math.floor(((player[10] / player[2]) * 100)) / 100 + '</td>';
 	outputHTML += '</tr>';
 	outputHTML += '</tbody>';
 	document.getElementById('featuredPlayerNHL').innerHTML = outputHTML;
@@ -358,7 +358,7 @@ function teamLines(){
 	outputHTML += '<tr>';
 	outputHTML += '<td>' + variant[variant.length - 1][19] + '</td>' + '<td>' + variant[variant.length - 1][20] + '</td>';
 	outputHTML += '</tr>'; 
-    document.getElementById('table1').innerHTML = outputHTML;
+    document.getElementById('tableLines').innerHTML = outputHTML;
 }
 function teamStatsRow(numberOfElements){
 
@@ -407,14 +407,14 @@ function teamStatsTable(){
     let outputHTML = '';
     outputHTML += '<th>First Name</th><th>Last Name</th><th>GP</th><th>G</th><th>A</th><th>+/-</th><th>PIM</th><th>PPG</th><th>PPA</th><th>SHG</th><th>SHA</th><th>Fights</th><th>Fights Won</th><th>Hits</th><th>GvA</th><th>TkA</th><th>SB</th>';
 	outputHTML += teamStatsRow(15)
-    document.getElementById('table2').innerHTML = outputHTML;
+    document.getElementById('tablePlayerTeamStats').innerHTML = outputHTML;
 }
 function playerStatsTable(){
 
 	let outputHTML = '';
     outputHTML += '<tr><th>Team</th><th>First Name</th><th>Last Name</th><th>GP</th><th>G</th><th>A</th><th>+/-</th><th>PIM</th><th>PPG</th><th>PPA</th><th>SHG</th><th>SHA</th><th>Fights</th><th>Fights Won</th><th>Hits</th><th>GvA</th><th>TkA</th><th>SB</th></tr>';
 	outputHTML += playerStatsRow(15)
-    document.getElementById('table1').innerHTML = outputHTML;
+    document.getElementById('tablePlayerStats').innerHTML = outputHTML;
 }
 function displayTeams(){
 
@@ -442,7 +442,6 @@ function featuredPlayer(){
 	sortedPlayer = sortedPlayer.reverse();
 	ranNum = Math.floor(Math.random() * 10);
 	playerFeaturedFHMStats(sortedPlayer[ranNum]);
-	console.log(sortedPlayer[ranNum]);
 	return [sortedPlayer[ranNum][0].toLowerCase() + '-' + sortedPlayer[ranNum][1].toLowerCase(), sortedPlayer[ranNum][14]]
 }
 
@@ -451,7 +450,6 @@ function featuredPlayerNHLStats(){
 	let players = featuredPlayer();
 	let url;
 	let playerData = [];
-	console.log(players[0]);
 	fetch('playerIds/' + players[0] +'.json')
 		.then(response => {
 			if (response.status == 404){
@@ -470,7 +468,6 @@ function featuredPlayerNHLStats(){
 			else{
 				url = 'https://assets.nhle.com/mugs/nhl/latest/' + result[2].slice(0, result.indexOf(`"`) - 1).toString() + '.png';
 				playerData.push([result[0].slice(1, 2).toUpperCase() + result[0].slice(2), result[1].slice(0, 1).toUpperCase() + result[1].slice(1), result1[4].slice(0, result1[4].indexOf(',')), result1[5].slice(0, result1[5].indexOf(',')), result1[6].slice(0, result1[6].indexOf(',')), result1[8].slice(0, result1[8].indexOf(',')), result1[9].slice(0, result1[9].indexOf(',')), result1[12].slice(0, result1[12].indexOf(',')), result1[14].slice(0, result1[14].indexOf(',')), result1[16].slice(0, result1[16].indexOf(',')), result1[7].slice(0, result1[7].indexOf(',')), result1[1].slice(0, result1[1].indexOf(','))]);
-				console.log(result1);
 				playerFeaturedNHLStats(playerData[0]);
 			}
 				document.getElementById('headshotBlock').innerHTML = '<img src = ' + url + " id = 'headshotFHM'>";
@@ -505,37 +502,25 @@ function setTeam(teamToSet){
 
 	localStorage.setItem('team', teamToSet);
 }
-function sortTable(){
+function sortTable(tableToSort, column){
 
-	var table, rows, switching, i, x, y, shouldSwitch;
-	table = document.getElementById('table1');
+	let table, rows, switching, i, x, y, shouldSwitch;
+	table = document.getElementById(tableToSort);
 	table = table.firstChild;
 	switching = true;
-	/* Make a loop that will continue until
-	no switching has been done: */
 	while (switching) {
-	  // Start by saying: no switching is done:
 	  switching = false;
 	  rows = table.rows;
-	  /* Loop through all table rows (except the
-	  first, which contains table headers): */
 	  for (i = 1; i < (rows.length - 1); i++) {
-		// Start by saying there should be no switching:
 		shouldSwitch = false;
-		/* Get the two elements you want to compare,
-		one from current row and one from the next: */
-		x = rows[i].getElementsByTagName('TD')[4];
-		y = rows[i + 1].getElementsByTagName('TD')[4];
-		// Check if the two rows should switch place:
+		x = rows[i].getElementsByTagName('TD')[column];
+		y = rows[i + 1].getElementsByTagName('TD')[column];
 		if (x.innerHTML - y.innerHTML < 0) {
-		  // If so, mark as a switch and break the loop:
 		  shouldSwitch = true;
 		  break;
 		}
 	  }
 	  if (shouldSwitch) {
-		/* If a switch has been marked, make the switch
-		and mark that a switch has been done: */
 		rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
 		switching = true;
 		}
