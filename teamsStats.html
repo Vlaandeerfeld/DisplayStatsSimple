@@ -19,13 +19,41 @@
 		</div>	
 	</div>
 	<style>
-		#displayTeamsTable{
-			position: relative;
-			display: table;
-			table-layout: fixed;
-			width: 100%;
-			min-width: 100%;
-			background-color: black;
+		@media (orientation: landscape) and (min-height: 41em){
+			#displayTeamsTable{
+				position: relative;
+				display: table;
+				table-layout: fixed;
+				min-width: 100%;
+				background-color: black;
+			}
+		}
+		@media (orientation: landscape) and (max-height: 41em){
+			#displayTeamsTable{
+				position: relative;
+				display: table;
+				table-layout: fixed;
+				min-width: 200%;
+				background-color: black;
+			}
+		}
+		@media (orientation: portrait) and (max-width: 41em){
+			#displayTeamsTable{
+				position: relative;
+				display: table;
+				table-layout: fixed;
+				min-width: 250%;
+				background-color: black;
+			}
+		}
+		@media (orientation: portrait) and (min-width: 41em){
+			#displayTeamsTable{
+				position: relative;
+				display: table;
+				table-layout: fixed;
+				min-width: 100%;
+				background-color: black;
+			}
 		}
 	</style>
 	<script>

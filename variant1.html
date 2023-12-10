@@ -28,19 +28,69 @@
 		teamStatsTable();
 	</script>
 	<style>
-		#tableLines{
-			position: relative;
-			float: left;
-			display: table;
-			table-layout: fixed;
-			width: 33%;
+		@media (orientation: landscape) and (min-height: 41em){
+			#tableLines{
+				position: relative;
+				float: left;
+				display: table;
+				table-layout: fixed;
+				width: 33%;
+			}
+			#tablePlayerTeamStats{
+				position: relative;
+				float: right;
+				display: table;
+				table-layout: fixed;
+				width: 66%;
+			}
 		}
-		#tablePlayerTeamStats{
-			position: relative;
-			float: right;
-			display: table;
-			table-layout: fixed;
-			width: 66%;
+		@media (orientation: landscape) and (max-height: 41em){
+			#tableLines{
+				position: relative;
+				float: left;
+				display: table;
+				table-layout: fixed;
+				width: 100%;
+			}
+			#tablePlayerTeamStats{
+				position: relative;
+				float: right;
+				display: table;
+				table-layout: fixed;
+				width: 100%;
+			}
+		}
+		@media (orientation: portrait) and (max-width: 41em){
+			#tableLines{
+				position: relative;
+				float: left;
+				display: table;
+				table-layout: fixed;
+				width: 100%;
+			}
+			#tablePlayerTeamStats{
+				position: relative;
+				float: left;
+				display: table;
+				table-layout: fixed;
+				min-width: 200%;
+			}
+		}
+		@media (orientation: portrait) and (min-width: 41em){
+			#tableLines{
+				position: relative;
+				float: left;
+				display: table;
+				table-layout: fixed;
+				width: 100%;
+			}
+			#tablePlayerTeamStats{
+				position: relative;
+				float: left;
+				display: table;
+				table-layout: fixed;
+				min-width: 200%;
+			}
 		}
 	</style>
 </body>

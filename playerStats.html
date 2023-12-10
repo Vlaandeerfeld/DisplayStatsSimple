@@ -38,75 +38,267 @@
 		featuredPlayerNHLStats();
     </script>
 	<style>
-		#tablePlayerStats{
-			position: relative;
-			display: table;
-			table-layout: fixed;
-			width: 100%;
-			min-width: 100%;
-			background-color: black;
+		@media (orientation: landscape) and (min-height: 41em){
+			#tablePlayerStats{
+				position: relative;
+				display: table;
+				table-layout: fixed;
+				width: 100%;
+				min-width: 100%;
+				background-color: black;
+			}
+			#headshotFHM{
+				position: relative;
+				width: 100%;
+			}
+			#teamCrestFHM{
+				width: 100%;
+				height: 100%;
+				display: block;
+				margin-top: auto;
+				margin-bottom: auto;
+			}
+			#headshotBlock{
+				position: relative;
+				float: left;
+				width: 25%;
+				height: 40%;
+			}
+			#teamCrestBlock{
+				position: relative;
+				display: block;
+				float: left;
+				margin: auto;
+				width: 25%;
+				height: 40%;
+			}
+			#headshotFHM1{
+				position: relative;
+				width: 100%;
+			}
+			#teamCrestFHM1{
+				width: 100%;
+				height: 100%;
+				display: block;
+				margin-top: auto;
+				margin-bottom: auto;
+			}
+			#headshotBlock1{
+				position: relative;
+				float: left;
+				width: 25%;
+				height: 40%;
+			}
+			#teamCrestBlock1{
+				position: relative;
+				display: block;
+				float: left;
+				margin: auto;
+				width: 25%;
+				height: 40%;
+			}
+			#featuredPlayerFHM{
+				position: relative;
+				float: left;
+				width: 50%;
+				height: 50%;
+			}
+			#featuredPlayerNHL{
+				position: relative;
+				float: left;
+				width: 50%;
+				height: 50%;
+			}
 		}
-		#headshotFHM{
-			position: relative;
-			width: 100%;
+		@media (orientation: landscape) and (max-height: 41em){
+			#tablePlayerStats{
+				position: relative;
+				display: table;
+				table-layout: fixed;
+				width: 100%;
+				min-width: 100%;
+				background-color: black;
+			}
+			#headshotFHM{
+				position: relative;
+				width: 100%;
+			}
+			#teamCrestFHM{
+				width: 100%;
+				height: 100%;
+				display: block;
+				margin-top: auto;
+				margin-bottom: auto;
+			}
+			#headshotBlock{
+				position: relative;
+				float: left;
+				width: 25%;
+				height: 40%;
+			}
+			#teamCrestBlock{
+				position: relative;
+				display: block;
+				float: left;
+				margin: auto;
+				width: 25%;
+				height: 40%;
+			}
+			#headshotFHM1{
+				position: relative;
+				width: 100%;
+			}
+			#teamCrestFHM1{
+				width: 100%;
+				height: 100%;
+				display: block;
+				margin-top: auto;
+				margin-bottom: auto;
+			}
+			#headshotBlock1{
+				position: relative;
+				float: left;
+				width: 25%;
+				height: 40%;
+			}
+			#teamCrestBlock1{
+				position: relative;
+				display: block;
+				float: left;
+				margin: auto;
+				width: 25%;
+				height: 40%;
+			}
+			#featuredPlayerFHM{
+				position: relative;
+				float: left;
+				width: 50%;
+				height: 50%;
+			}
+			#featuredPlayerNHL{
+				position: relative;
+				float: left;
+				width: 50%;
+				height: 50%;
+			}
 		}
-		#teamCrestFHM{
-			width: 100%;
-			height: 100%;
-			display: block;
-			margin-top: auto;
-			margin-bottom: auto;
+		@media (orientation: portrait) and (max-width: 41em){
+			#tablePlayerStats{
+				position: relative;
+				display: table;
+				table-layout: fixed;
+				min-width: 200%;
+				background-color: black;
+			}
+			#headshotFHM{
+				position: relative;
+				width: 100%;
+			}
+			#teamCrestFHM{
+				width: 100%;
+				height: 100%;
+				display: block;
+				margin-top: auto;
+				margin-bottom: auto;
+			}
+			#headshotBlock{
+				position: relative;
+				float: left;
+				width: 100%;
+			}
+			#teamCrestBlock{
+				position: relative;
+				display: block;
+				float: left;
+				width: 100%;
+			}
+			#headshotFHM1{
+				position: absolute;
+				z-index: -5;
+			}
+			#teamCrestFHM1{
+				position: absolute;
+				z-index: -5;
+			}
+			#headshotBlock1{
+				position: absolute;
+				z-index: -5;
+			}
+			#teamCrestBlock1{
+				position: absolute;
+				z-index: -5;
+			}
+			#featuredPlayerFHM{
+				position: relative;
+				float: left;
+				width: 100%;
+				height: 100%;
+			}
+			#featuredPlayerNHL{
+				position: relative;
+				float: left;
+				width: 100%;
+				height: 100%;
+			}
 		}
-		#headshotBlock{
-			position: relative;
-			float: left;
-			width: 25%;
-			height: 40%;
-		}
-		#teamCrestBlock{
-			position: relative;
-			display: block;
-			float: left;
-			margin: auto;
-			width: 25%;
-			height: 40%;
-		}
-		#headshotFHM1{
-			position: relative;
-			width: 100%;
-		}
-		#teamCrestFHM1{
-			width: 100%;
-			height: 100%;
-			display: block;
-			margin-top: auto;
-			margin-bottom: auto;
-		}
-		#headshotBlock1{
-			position: relative;
-			float: left;
-			width: 25%;
-			height: 40%;
-		}
-		#teamCrestBlock1{
-			position: relative;
-			display: block;
-			float: left;
-			margin: auto;
-			width: 25%;
-			height: 40%;
-		}
-		#featuredPlayerFHM{
-			position: relative;
-			float: left;
-			width: 50%;
-			height: 50%;
-		}
-		#featuredPlayerNHL{
-			position: relative;
-			float: left;
-			width: 50%;
-			height: 50%;
+		@media (orientation: portrait) and (min-width: 41em){
+			#tablePlayerStats{
+				position: relative;
+				display: table;
+				table-layout: fixed;
+				min-width: 200%;
+				background-color: black;
+			}
+			#headshotFHM{
+				position: relative;
+				width: 100%;
+			}
+			#teamCrestFHM{
+				width: 100%;
+				height: 100%;
+				display: block;
+				margin-top: auto;
+				margin-bottom: auto;
+			}
+			#headshotBlock{
+				position: relative;
+				float: left;
+				width: 100%;
+			}
+			#teamCrestBlock{
+				position: relative;
+				display: block;
+				float: left;
+				width: 100%;
+			}
+			#headshotFHM1{
+				position: absolute;
+				z-index: -5;
+			}
+			#teamCrestFHM1{
+				position: absolute;
+				z-index: -5;
+			}
+			#headshotBlock1{
+				position: absolute;
+				z-index: -5;
+			}
+			#teamCrestBlock1{
+				position: absolute;
+				z-index: -5;
+			}
+			#featuredPlayerFHM{
+				position: relative;
+				float: left;
+				width: 100%;
+				height: 100%;
+			}
+			#featuredPlayerNHL{
+				position: relative;
+				float: left;
+				width: 100%;
+				height: 100%;
+			}
 		}
 	</style>
 </body>

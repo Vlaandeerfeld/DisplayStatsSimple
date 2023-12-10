@@ -253,7 +253,7 @@ function playerFeaturedFHMStats(player){
 
 	outputHTML += '<tbody>';
 	outputHTML += '<tr>';
-	outputHTML += '<th>' + player[0] + '</th>' + "<th>" + player[1] + '</th>';
+	outputHTML += '<th>' + player[0] + '</th>' + "<th>" + player[1] + '</th>' + '<th></th>';
     outputHTML += '</tr>';
 	outputHTML += '<tr>';
 	outputHTML += '<th>GP</th>' + '<th>Goals</th>' + '<th>Assists</th>';
