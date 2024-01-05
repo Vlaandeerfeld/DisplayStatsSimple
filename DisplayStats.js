@@ -250,34 +250,35 @@ function teamTables(variantToDisplay){
 function playerFeaturedFHMStats(player){
 
 	let outputHTML = '';
+	let playerStats = player.split(',');
 
 	outputHTML += '<tbody>';
 	outputHTML += '<tr>';
-	outputHTML += '<th>' + player[0] + '</th>' + "<th>" + player[1] + '</th>' + '<th></th>';
+	outputHTML += '<th>' + playerStats[0] + '</th>' + "<th>" + playerStats[1] + '</th>' + '<th></th>';
     outputHTML += '</tr>';
 	outputHTML += '<tr>';
 	outputHTML += '<th>GP</th>' + '<th>Goals</th>' + '<th>Assists</th>';
 	outputHTML += '</tr>';
 	outputHTML += '<tr>';
-	outputHTML += '<td>' + player[2] + '</td>' + '<td>' + player[3] + '</td>' + '<td>' + player[4] + '</td>';
+	outputHTML += '<td>' + playerStats[2] + '</td>' + '<td>' + playerStats[3] + '</td>' + '<td>' + playerStats[4] + '</td>';
 	outputHTML += '</tr>';
 	outputHTML += '<tr>';
 	outputHTML += '<th>+/-</th>' + '<th>PIM</th>' + '<th>Shots</th>';
 	outputHTML += '</tr>';
 	outputHTML += '<tr>';
-	outputHTML += '<td>' + player[5] + '</td>' + '<td>' + player[6] + '</td>' + '<td>' + player[7] + '</td>';
+	outputHTML += '<td>' + playerStats[5] + '</td>' + '<td>' + playerStats[6] + '</td>' + '<td>' + playerStats[7] + '</td>';
 	outputHTML += '</tr>';
     outputHTML += '<tr>';
 	outputHTML += '<th>PPG</th>' + '<th>SHG</th>' + '<th>Points</th>';
 	outputHTML += '</tr>';
 	outputHTML += '<tr>';
-	outputHTML += '<td>' + player[8] + '</td>' + '<td>' + player[9] + '</td>' + '<td>' + (parseInt(player[3]) + parseInt(player[4])) + '</td>';
+	outputHTML += '<td>' + playerStats[8] + '</td>' + '<td>' + playerStats[9] + '</td>' + '<td>' + (parseInt(playerStats[3]) + parseInt(playerStats[4])) + '</td>';
 	outputHTML += '</tr>';
 	outputHTML += '<tr>';
 	outputHTML += '<th>G/Game</th>' + '<th>Asissts/Game</th>' + '<th>Points/Game</th>';
 	outputHTML += '</tr>';
 	outputHTML += '<tr>';
-	outputHTML += '<td>' + Math.floor(((player[3] / player[2]) * 100)) / 100 + '</td>' + '<td>' + Math.floor(((player[4] / player[2]) * 100)) / 100 + '</td>' + '<td>' + Math.floor(((player[10] / player[2]) * 100)) / 100 + '</td>';
+	outputHTML += '<td>' + Math.floor(((playerStats[3] / playerStats[2]) * 100)) / 100 + '</td>' + '<td>' + Math.floor(((playerStats[4] / playerStats[2]) * 100)) / 100 + '</td>' + '<td>' + Math.floor(((playerStats[10] / playerStats[2]) * 100)) / 100 + '</td>';
 	outputHTML += '</tr>';
 	outputHTML += '</tbody>';
 	document.getElementById('featuredPlayerFHM').innerHTML = outputHTML;
@@ -286,36 +287,66 @@ function playerFeaturedFHMStats(player){
 function playerFeaturedNHLStats(player){
 
 	let outputHTML = '';
+
 	outputHTML += '<tbody>';
 	outputHTML += '<tr>';
-	outputHTML += '<th>' + player[11] + '</th>' + '<th>' + player[0] + '</th>' + "<th>" + player[1] + '</th>';
+	outputHTML += '<th>' + localStorage['season'] + '</th>' + '<th>' + player[0][0] + '</th>' + "<th>" + player[0][1] + '</th>';
     outputHTML += '</tr>';
 	outputHTML += '<tr>';
 	outputHTML += '<th>GP</th>' + '<th>Goals</th>' + '<th>Assists</th>';
 	outputHTML += '</tr>';
 	outputHTML += '<tr>';
-	outputHTML += '<td>' + player[2] + '</td>' + '<td>' + player[3] + '</td>' + '<td>' + player[4] + '</td>';
+	outputHTML += '<td>' + player[0][2] + '</td>' + '<td>' + player[0][3] + '</td>' + '<td>' + player[0][4] + '</td>';
 	outputHTML += '</tr>';
 	outputHTML += '<tr>';
 	outputHTML += '<th>+/-</th>' + '<th>PIM</th>' + '<th>Shots</th>';
 	outputHTML += '</tr>';
 	outputHTML += '<tr>';
-	outputHTML += '<td>' + player[5] + '</td>' + '<td>' + player[6] + '</td>' + '<td>' + player[7] + '</td>';
+	outputHTML += '<td>' + player[0][5] + '</td>' + '<td>' + player[0][6] + '</td>' + '<td>' + player[0][7] + '</td>';
 	outputHTML += '</tr>';
     outputHTML += '<tr>';
 	outputHTML += '<th>PPG</th>' + '<th>SHG</th>' + '<th>Points</th>';
 	outputHTML += '</tr>';
 	outputHTML += '<tr>';
-	outputHTML += '<td>' + player[8] + '</td>' + '<td>' + player[9] + '</td>' + '<td>' + player[10] + '</td>';
+	outputHTML += '<td>' + player[0][8] + '</td>' + '<td>' + player[0][9] + '</td>' + '<td>' + player[0][10] + '</td>';
 	outputHTML += '</tr>';
 	outputHTML += '<tr>';
 	outputHTML += '<th>G/Game</th>' + '<th>Assists/Game</th>' + '<th>Points/Game</th>';
 	outputHTML += '</tr>';
 	outputHTML += '<tr>';
-	outputHTML += '<td>' + Math.floor(((player[3] / player[2]) * 100)) / 100 + '</td>' + '<td>' + Math.floor(((player[4] / player[2]) * 100)) / 100 + '</td>' + '<td>' + Math.floor(((player[10] / player[2]) * 100)) / 100 + '</td>';
+	outputHTML += '<td>' + Math.floor(((player[0][3] / player[0][2]) * 100)) / 100 + '</td>' + '<td>' + Math.floor(((player[0][4] / player[0][2]) * 100)) / 100 + '</td>' + '<td>' + Math.floor(((player[0][10] / player[0][2]) * 100)) / 100 + '</td>';
 	outputHTML += '</tr>';
 	outputHTML += '</tbody>';
 	document.getElementById('featuredPlayerNHL').innerHTML = outputHTML;
+}
+
+function teamFeaturedNHLStats(team){
+
+	let outputHTML = '';
+	outputHTML += '<tbody>';
+	outputHTML += '<tr>';
+	outputHTML += '<th>' + team['teamName'] + '</th>' + '<th>' + team['season'] + '</th>' + "<th>" + team['leagueSequence'] + '</th>';
+    outputHTML += '</tr>';
+	outputHTML += '<tr>';
+	outputHTML += '<th>GP</th>' + '<th>Goals For</th>' + '<th>Goals Against</th>';
+	outputHTML += '</tr>';
+	outputHTML += '<tr>';
+	outputHTML += '<td>' + team['gamesPlayed'] + '</td>' + '<td>' + team['goalsFor'] + '</td>' + '<td>' + team['goalsAgainst'] + '</td>';
+	outputHTML += '</tr>';
+	outputHTML += '<tr>';
+	outputHTML += '<th>Wins</th>' + '<th>Losses</th>' + '<th>OT Losses</th>';
+	outputHTML += '</tr>';
+	outputHTML += '<tr>';
+	outputHTML += '<td>' + team['regulationPlusOtWins'] + '</td>' + '<td>' + team['losses'] + '</td>' + '<td>' + team['otLosses'] + '</td>';
+	outputHTML += '</tr>';
+    outputHTML += '<tr>';
+	outputHTML += '<th>Points</th>' + '<th>Point%</th>' + '<th>Goals For %</th>';
+	outputHTML += '</tr>';
+	outputHTML += '<tr>';
+	outputHTML += '<td>' + team['points'] + '</td>' + '<td>' + team['regulationPlusOtWinPctg'] + '</td>' + '<td>' + team['goalsForPctg'] + '</td>';
+	outputHTML += '</tr>';
+	outputHTML += '</tbody>';
+	document.getElementById('featuredTeamNHL').innerHTML = outputHTML;
 }
 
 function teamLines(){
@@ -380,11 +411,22 @@ function teamStatsRow(numberOfElements){
     }
     return outputHTML;
 }
-function playerStatsRow(numberOfElements){
+
+async function playerStatsRow(){
 
 	let outputHTML = '';
+	console.log('wtf');
+	return getfhmPlayer('20282029')
+		.then(data =>{
+			for (let x in data){
+				outputHTML += '<tr>';
+				outputHTML += '<td>' + data[x]['Team_Id'] + '</td><td>' + data[x]['First_Name'] + '</td><td>' + data[x]['Last_Name'] + '</td><td>' + data[x]['count(Player_Id)'] + '</td><td>' + data[x]['sum(Goals)'] + '</td><td>' + data[x]['sum(Assists)'] + '</td><td>' + data[x]['sum(Goals + Assists)'] + '</td>';
+				outputHTML += '</tr>'; 
+			}
+			return outputHTML;
+		});
 
-	for(let x = parseInt(localStorage['counter'] - 1); x > 0; x--){
+/*	for(let x = parseInt(localStorage['counter'] - 1); x > 0; x--){
 		let variant = retrieve('variant' + x.toString());
 		let z = 0;
 		let y = variant.length - 2;
@@ -400,7 +442,8 @@ function playerStatsRow(numberOfElements){
        	 	y--;
     	}
 	}
-    return outputHTML;
+   return outputHTML;
+   */
 }
 function teamStatsTable(){
 
@@ -413,17 +456,21 @@ function playerStatsTable(){
 
 	let outputHTML = '';
     outputHTML += '<tr><th>Team</th><th>First Name</th><th>Last Name</th><th>GP</th><th>G</th><th>A</th><th>+/-</th><th>PIM</th><th>PPG</th><th>PPA</th><th>SHG</th><th>SHA</th><th>Fights</th><th>Fights Won</th><th>Hits</th><th>GvA</th><th>TkA</th><th>SB</th></tr>';
-	outputHTML += playerStatsRow(15)
-    document.getElementById('tablePlayerStats').innerHTML = outputHTML;
+	console.log(outputHTML);
+	playerStatsRow()
+		.then(data => {
+			outputHTML += data;
+			console.log(data);
+			document.getElementById('tablePlayerStats').innerHTML = outputHTML;
+		});
+   
 }
 function displayTeams(){
 
     let outputHTML = '';
-    outputHTML += '<table id = displayTeamsTable>';
     outputHTML += '<th>Name</th><th>GP</th><th>Points</th><th>PCT</th><th>G</th><th>GA</th><th>S</th><th>SA</th><th>FO%</th><th>SB</th><th>Hits</th><th>Takeaways</th><th>Giveaways</th><th>InD</th><th>PIM/G</th><th>PPG</th><th>SHGA</th><th>SH Chances</th><th>PPGA</th><th>SH Chances</th><th>SHG</th>';
 	outputHTML += displayTeamsRow(17);
-    outputHTML += '</table';
-	document.getElementById('outermostLayer').insertAdjacentHTML('afterbegin', outputHTML);
+    document.getElementById('teamFHM').innerHTML = outputHTML;
 }
 
 function featuredPlayer(){
@@ -441,16 +488,18 @@ function featuredPlayer(){
 	let sortedPlayer = player.sort((a, b) => a[3] - b[3]);
 	sortedPlayer = sortedPlayer.reverse();
 	ranNum = Math.floor(Math.random() * 10);
-	playerFeaturedFHMStats(sortedPlayer[ranNum]);
-	return [sortedPlayer[ranNum][0].toLowerCase() + '-' + sortedPlayer[ranNum][1].toLowerCase(), sortedPlayer[ranNum][14]]
+	localStorage.setItem('featuredplayerstats', sortedPlayer[ranNum]);
+	localStorage.setItem('featuredplayerteamabv', sortedPlayer[ranNum][14]);
+	localStorage.setItem('featuredplayerfirstname', sortedPlayer[ranNum][0].toLowerCase());
+	localStorage.setItem('featuredplayerlastname', sortedPlayer[ranNum][1].toLowerCase());
 }
 
 function featuredPlayerNHLStats(){
 
-	let players = featuredPlayer();
 	let url;
 	let playerData = [];
-	fetch('playerIds/' + players[0] +'.json')
+	
+	fetch('playerIds/' + localStorage['featuredplayerfirstname'] + '-' + localStorage['featuredplayerlastname'] + '.json')
 		.then(response => {
 			if (response.status == 404){
 				document.getElementById('headshotBlock').innerHTML = "<img src = 'https://assets.nhle.com/mugs/nhl/latest/' id = 'headshotFHM'>";
@@ -460,25 +509,72 @@ function featuredPlayerNHLStats(){
 			}
 		})
 		.then(data => {
-			result = data.slice(0, data.indexOf('{')).split('-');
-			result1 = data.slice(0, data.indexOf('}')).split(`:`);
-			if (result[2].indexOf(`"`) == -1){
-				url = 'https://assets.nhle.com/mugs/nhl/latest/' + result[2].toString() + '.png';
-			}
-			else{
-				url = 'https://assets.nhle.com/mugs/nhl/latest/' + result[2].slice(0, result.indexOf(`"`) - 1).toString() + '.png';
-				playerData.push([result[0].slice(1, 2).toUpperCase() + result[0].slice(2), result[1].slice(0, 1).toUpperCase() + result[1].slice(1), result1[4].slice(0, result1[4].indexOf(',')), result1[5].slice(0, result1[5].indexOf(',')), result1[6].slice(0, result1[6].indexOf(',')), result1[8].slice(0, result1[8].indexOf(',')), result1[9].slice(0, result1[9].indexOf(',')), result1[12].slice(0, result1[12].indexOf(',')), result1[14].slice(0, result1[14].indexOf(',')), result1[16].slice(0, result1[16].indexOf(',')), result1[7].slice(0, result1[7].indexOf(',')), result1[1].slice(0, result1[1].indexOf(','))]);
-				playerFeaturedNHLStats(playerData[0]);
-			}
-				document.getElementById('headshotBlock').innerHTML = '<img src = ' + url + " id = 'headshotFHM'>";
-				document.getElementById('headshotBlock1').innerHTML = '<img src = ' + url + " id = 'headshotFHM1'>";
+			let result = data.slice(0, data.indexOf('{')).split('-');
+			console.log(result);
+			let playerId = result[2].slice(0, result.indexOf(`"`) - 1).toString();
+			getfeaturedNHLplayerSeason(playerId)
+				.then(response => {
+					for (let x in response[2]){
+						console.log(response[2][x]['season']);
+						localStorage['season'] = response[2][x]['season'];
+						if(response[2][x]['season'] == response[1]['season']){
+							console.log(response[2][x]['teamName']['default']);
+							fetch('http://10.0.0.62:3000/nhlteams', {headers: {'team': response[2][x]['teamName']['default']}})
+								.then(response => response.text())
+								.then(data => {
+									console.log(data);
+									localStorage['teamABV'] = data;
+									url = 'https://assets.nhle.com/logos/nhl/svg/' + data + '_dark.svg';
+									document.getElementById('teamCrestBlock1').innerHTML = '<img src = ' + url + " id = 'teamCrestFHM1'>";
+								});
+						break;
+						}
+					}
+					let result1 = response[1]['regularSeason']['subSeason'];
+					console.log(result1);
+					if (result[2].indexOf(`"`) == -1){
+						url = 'https://assets.nhle.com/mugs/nhl/latest/' + result[2].toString() + '.png';
+					}
+					else{
+						url = 'https://assets.nhle.com/mugs/nhl/latest/' + result[2].slice(0, result.indexOf(`"`) - 1).toString() + '.png';
+						playerData.push([result[0].slice(1, 2).toUpperCase() + result[0].slice(2), result[1].slice(0, 1).toUpperCase() + result[1].slice(1), result1['gamesPlayed'], result1['goals'], result1['assists'], result1['plusMinus'], result1['pim'], result1['shots'], result1['powerPlayGoals'], result1['shorthandedGoals'], result1['points'], response[1]['season']]);
+						playerFeaturedNHLStats(playerData);
+					}
+					document.getElementById('headshotBlock').innerHTML = '<img src = ' + url + " id = 'headshotFHM'>";
+					document.getElementById('headshotBlock1').innerHTML = '<img src = ' + url + " id = 'headshotFHM1'>";
+				});
 		});
 
-	url = 'https://assets.nhle.com/logos/nhl/svg/' + players[1] + '_dark.svg';
+	url = 'https://assets.nhle.com/logos/nhl/svg/' + localStorage['featuredplayerteamabv'] + '_dark.svg';
 	document.getElementById('teamCrestBlock').innerHTML = '<img src = ' + url + " id = 'teamCrestFHM'>";
-	document.getElementById('teamCrestBlock1').innerHTML = '<img src = ' + url + " id = 'teamCrestFHM1'>";
 }
 
+function getFeaturedNHLTeamStats(){
+
+	let NHLTeamStats = {};
+	
+	getfeaturedNHLTeamSeason(localStorage['teamABV'], localStorage['season'])
+		.then(response => {
+			NHLTeamStats = {
+				'season': localStorage['season'],
+				'teamABV': localStorage['teamABV'],
+				'gamesPlayed': response[0],
+				'goalsFor': response[1],
+				'goalsAgainst': response[2],
+				'regulationPlusOtWins': response[3],
+				'losses': response[4],
+				'otLosses': response[5],
+				'points': response[6],
+				'regulationPlusOtWinPctg': response[7],
+				'goalsForPctg': response[8],
+				'leagueSequence': response[9],
+				'teamName': response[10]	
+			};
+			console.log(NHLTeamStats);
+			teamFeaturedNHLStats(NHLTeamStats);
+		});	
+}
+	
 function displayTeamsRow(numberOfElements){
 
 	let outputHTML = '';
@@ -530,4 +626,34 @@ function sortTable(tableToSort, column){
 function compareNumbers(a, b) {
 
 	return a - b;
+}
+
+async function getfeaturedNHLplayerSeason(playerid){
+
+	return fetch('http://10.0.0.62:3000/nhlplayer', {headers: {'playerid': playerid}})
+		.then(response => response.json())
+		.then(data => {
+			console.log(data);
+			return data;
+		});
+}
+
+async function getfeaturedNHLTeamSeason(ABV, season){
+
+	return fetch('http://10.0.0.62:3000/nhlteamstats', {headers: {'teamabv': ABV, 'season': season}})
+		.then(response => response.json())
+		.then(data => {
+			console.log(data);
+			return data;
+		});
+}
+
+async function getfhmPlayer(season){
+
+	return fetch('http://10.0.0.62:3000/fhmplayer', {headers: {'season': '20292030'}})
+		.then(response => response.json())
+		.then(data => {
+			console.log(data);
+			return data;
+		});
 }

@@ -11,6 +11,10 @@
 <body>
 	<div id = 'canvas'>
 		<div id = 'outermostLayer'>
+			<table id = 'featuredTeamNHL'>
+			</table>
+			<table id = 'teamFHM'>
+			</table>
 			<div id = 'mainContent'>
 			</div>
 			<button type = 'button' id = 'button2' title = 'player stats' onclick = "document.location = 'playerStats.html'"><i class = 'glyphicon glyphicon-user'></i></button>
@@ -20,44 +24,69 @@
 	</div>
 	<style>
 		@media (orientation: landscape) and (min-height: 41em){
-			#displayTeamsTable{
+			#teamFHM{
 				position: relative;
 				display: table;
 				table-layout: fixed;
 				min-width: 100%;
 				background-color: black;
 			}
+			#featuredTeamNHL{
+				position: relative;
+				float: left;
+				width: 50%;
+				height: 50%;
+			}
 		}
 		@media (orientation: landscape) and (max-height: 41em){
-			#displayTeamsTable{
+			#teamFHM{
 				position: relative;
 				display: table;
 				table-layout: fixed;
 				min-width: 200%;
 				background-color: black;
 			}
+			#featuredTeamNHL{
+				position: relative;
+				float: left;
+				width: 100%;
+				height: 100%;
+			}
 		}
 		@media (orientation: portrait) and (max-width: 41em){
-			#displayTeamsTable{
+			#teamFHM{
 				position: relative;
 				display: table;
 				table-layout: fixed;
 				min-width: 250%;
 				background-color: black;
 			}
+			#featuredTeamNHL{
+				position: relative;
+				float: left;
+				width: 100%;
+				height: 100%;
+			}
 		}
 		@media (orientation: portrait) and (min-width: 41em){
-			#displayTeamsTable{
+			#teamFHM{
 				position: relative;
 				display: table;
 				table-layout: fixed;
 				min-width: 100%;
 				background-color: black;
 			}
+			#featuredTeamNHL{
+				position: relative;
+				float: left;
+				width: 50%;
+				height: 50%;
+			}
 		}
 	</style>
 	<script>
         displayTeams()
+		getFeaturedNHLTeamStats()
 	</script>
 </body>
 </html>
