@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name= 'viewport' content = 'width=device-width, initial-scale = 1'>
+        <link rel = 'stylesheet' href = 'module1.css'>
+        <script src="FHM.js"></script>
+        <title>FHM stats teams</title>
+    </head>
+    <body onload = 'leagueFilters("FHM"); teamFilters(document.getElementById("FHMleaguesstats").options[document.getElementById("FHMleaguesstats").options.selectedIndex].text); seasonFilters(document.getElementById("FHMleaguesstats").options[document.getElementById("FHMleaguesstats").options.selectedIndex].text); teamTablesOverview(document.getElementById("FHMleaguesstats").options[document.getElementById("FHMleaguesstats").options.selectedIndex].text, document.getElementById("FHMseasonstats").options[document.getElementById("FHMseasonstats").options.selectedIndex].text, document.getElementById("FHMteamsstats").options[document.getElementById("FHMteamsstats").options.selectedIndex].text)'>
+        <div id = 'canvas'>
+            <div class = 'dropDownImport' id = 'FHMStatsTeamsDropDown' title = 'Import'>
+                <button type = "button" class = 'close' onclick = "document.getElementById('FHMStatsTeamsDropDown').style.display = 'none'">
+                    Close
+                </button>
+                <div id = 'CSV'>
+                    <input id = 'CSVfile' name = 'file[]' title = 'CSVfile' type = 'file' accept = '.csv' multiple= 'multiple' />
+                    <button type = 'button' id = 'button' title = 'upload' onclick = 'upload()'>Upload</button>
+                </div>
+            </div>
+            <div id = 'topFilter'>
+                <select class = 'filters' id = 'FHMleaguesstats' name = 'FHMLeaguesStats' onchange = 'teamFilters(this.options[selectedIndex].text); seasonFilters(this.options[selectedIndex].text);'>
+                </select>
+                <select class = 'filters' id = 'FHMteamsstats' name = 'FHMTeamsStats'>
+                </select>
+                <select class = 'filters' id = 'FHMseasonstats' name = 'FHMSeasonStats'>
+                </select>
+                <button class = 'filters' type = 'button' onclick='teamTablesOverview(document.getElementById("FHMleaguesstats").options[document.getElementById("FHMleaguesstats").options.selectedIndex].text, document.getElementById("FHMseasonstats").options[document.getElementById("FHMseasonstats").options.selectedIndex].text, document.getElementById("FHMteamsstats").options[document.getElementById("FHMteamsstats").options.selectedIndex].text);'>Filter</button>
+            </div>
+            <div id = 'outermostLayer'>
+                <table id = 'teamTablesOverview'>
+                </table>
+            </div>
+            <div class = 'navBottom'>
+                <button type = 'button' class = 'navButton1' id = 'navButtonHomeFHMstatsteams' title = 'Home' onclick = "document.location = 'index.html'">
+                    Home
+                </button>
+                <button type = 'button' class = 'navButton2' id = 'navButtonImportFHMstatsteams' title = 'Import' onclick = "if (document.getElementById('FHMStatsTeamsDropDown').style.display == 'block') {document.getElementById('FHMStatsTeamsDropDown').style.display = 'none'} else {document.getElementById('FHMStatsTeamsDropDown').style.display = 'block'}">
+                    Import
+                </button>
+                <button type = 'button' class = 'navButton3' id = 'navButtonMainFHMstatsteams' title = 'Main' onclick = "document.location = 'FHMstats.html'">
+                    Main
+                </button>
+                <button type = 'button' class = 'navButton4' id = 'navButtonPlayerStatsFHMstatsteams' title = 'Player Stats' onclick = "document.location = 'FHMstatsplayers.html'">
+                    Player Stats
+                </button>
+            </div>
+        </div>
+    </body>
+</html>

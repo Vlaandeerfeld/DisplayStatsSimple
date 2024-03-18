@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name= 'viewport' content = 'width=device-width, initial-scale = 1'>
+        <link rel = 'stylesheet' href = 'module1.css'>
+        <script src="FHM.js"></script>
+        <title>FHM stats team</title>
+    </head>
+    <body onload = 'teamStatsFHM()'>
+        <div id = 'canvas'>
+            <div class = 'dropDownImport' id = 'FHMStatsTeamDropDown' title = 'Import'>
+                <button type = "button" class = 'close' onclick = "document.getElementById('FHMStatsTeamDropDown').style.display = 'none'">
+                    Close
+                </button>
+            </div>
+            <div id = 'outermostLayer'>
+                <div class = 'teamLogo' id = 'FHMTeamLogo'>
+                </div>
+                <table class = 'statsTeamRoster' id = 'FHMstatsteamRoster'>
+                </table>
+                <table class = 'statsTeamLinesStats' id = 'FHMstatsteamLinesStats'>
+                </table>
+                <table class = 'statsTeamRosterStats' id = 'FHMstatsteamRosterStats'>
+                </table>
+            </div>
+            <div class = 'navBottom'>
+                <button type = 'button' class = 'navButton1' id = 'navButtonHomeFHMstatsteam' title = 'Home' onclick = "document.location = 'index.html'">
+                    Home
+                </button>
+                <button type = 'button' class = 'navButton2' id = 'navButtonImportFHMstatsteam' title = 'Import' onclick = "if (document.getElementById('FHMStatsTeamDropDown').style.display == 'block') {document.getElementById('FHMStatsTeamDropDown').style.display = 'none'} else {document.getElementById('FHMStatsTeamDropDown').style.display = 'block'}">
+                    Import
+                </button>                
+                <button type = 'button' class = 'navButton3' id = 'navButtonMainFHMstatsteam' title = 'Main' onclick = "document.location = 'FHMstats.html'">
+                    Main
+                </button>
+                <button type = 'button' class = 'navButton4' id = 'navButtonTeamStatsFHMstatsteam' title = 'Team Stats' onclick = "document.location = 'FHMstatsteams.html'">
+                    Team Stats
+                </button>
+            </div>
+        </div>
+    </body>
+</html>
